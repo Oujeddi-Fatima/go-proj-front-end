@@ -1,4 +1,4 @@
-import { Component, Injector } from "@angular/core";
+import { Component, Injector } from "@angular/core"; 
 
 @Component({
     selector:"academic-record",
