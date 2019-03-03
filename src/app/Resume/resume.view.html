@@ -1,0 +1,39 @@
+<h1>Resume view</h1>
+<grid-ui
+    [grid-columns]="[{'colName':'title'},{'colName':'description'},{'colName':'skills'},{'colName':'achievements'}]"
+    [grid-data]="resumes" (grid-selected)="selectResume($event)"></grid-ui>
+<table>
+    <tr>
+        <td>
+            Title :
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="resume.title">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Description :
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="resume.description">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Skills :
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="resume.skills">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Achievements :
+        </td>
+        <td>
+            <input type="text" [(ngModel)]="resume.achievements">
+        </td>
+    </tr>
+</table>
+<input (click)="addResume()" type="button" value="Add Resume">

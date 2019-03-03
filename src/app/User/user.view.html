@@ -1,0 +1,30 @@
+<form [formGroup]="user.formGroup">
+      <h1>User Information</h1>
+      <div>
+            First Name: <input [ngModelOptions]="{standalone: true}" [(ngModel)]=user.firstName type="text">
+            <br> Last Name: <input [ngModelOptions]="{standalone: true}" [(ngModel)]=user.lastName type="text">
+            <br> Email: <input formControlName="email" [(ngModel)]=user.email type="text">
+            <br> Phone Number: <input formControlName="phoneNumber" [(ngModel)]=user.phoneNumber type="text">
+            <br> Date Of Birth: <input formControlName="dateOfBirth" [(ngModel)]=user.dateOfBirth type="text">
+            <br> <input [disabled]="!(user.formGroup.valid)" type="button" value="Regiser" (click)="add()">
+      </div>
+      <div *ngIf="user.formGroup.dirty">
+            <p [hidden]="!(hasError('email','required'))"> Email is required</p>
+            <p [hidden]="!(hasError('phoneNumber','required'))"> phoneNumber is required</p>
+            <p [hidden]="!(hasError('dateOfBirth','required'))"> dateOfBirth is required</p>
+      </div>
+      <table>
+            <tr>
+                  <td>{{registeredUser.lastName}}  {{registeredUser.firstName}}</td>
+            </tr>
+            <tr>
+                  <td>{{registeredUser.phoneNumber}}</td>
+            </tr>
+            <tr>
+                  <td>{{registeredUser.dateOfBirth}}</td>
+            </tr>
+            <tr>
+                  <td>{{registeredUser.email}}</td>
+            </tr>
+      </table>
+</form>
