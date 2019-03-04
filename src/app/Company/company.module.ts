@@ -4,15 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompanyRoutingModule } from '../Routing/company-routing.module';
 import { CompanyComponent } from './company.component';
 
+
 @NgModule({
   declarations: [
-    CompanyComponent
-  ],
+    CompanyComponent],
   imports: [
-    CommonModule, ReactiveFormsModule,
+    CommonModule, //ReactiveFormsModule,
     CompanyRoutingModule,FormsModule
   ],
   providers: [],
   bootstrap: [CompanyComponent]
 })
-export class CompanyModule { }
+export class CompanyModule {}

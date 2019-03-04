@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { ResumeRoutingModule } from "../Routing/resume-routing.module";
 import { ResumeComponent } from "./resume.component";
 
+
 @NgModule({
   declarations: [ResumeComponent],
   imports: [CommonModule, ResumeRoutingModule, FormsModule],

@@ -15,4 +15,4 @@ import { JobPostComponent } from './jobPost.component';
   providers: [],
   bootstrap: [JobPostComponent]
 })
-export class JobPostModule { }
+export class JobPostModule {}

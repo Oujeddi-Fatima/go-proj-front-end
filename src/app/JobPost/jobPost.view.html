@@ -1,1 +1,69 @@
 <h1>Job Post</h1>
+
+<table>
+    <tr>
+        <td>
+            Title
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="jobPost.title">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Level
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="jobPost.level">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Description
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="jobPost.description">
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Requirement
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="jobPost.requirement">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            RequiredQualification
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="jobPost.requiredQualification">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            PostDate
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="jobPost.postDate">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            CloseDate
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="jobPost.closeDate">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            EstimatedSalary
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="jobPost.estimatedSalary">
+        </td>
+    </tr>
+</table>
+<input (click)="addjobPost()" type="button" value="add JobPost">

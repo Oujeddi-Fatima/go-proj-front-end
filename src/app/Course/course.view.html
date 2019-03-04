@@ -1,1 +1,14 @@
 <h1>Course</h1>
+
+       
+       <table>
+           <tr>
+               <td>
+                   Title
+               </td>
+               <td>
+                   <input type = "text" [(ngModel)]="course.title">
+               </td>
+           </tr>
+       </table>
+       <input (click)="addCourse()" type="button" value="add Course">

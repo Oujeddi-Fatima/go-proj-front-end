@@ -9,8 +9,8 @@ import { AddressComponent } from './address.component';
     AddressComponent
   ],
   imports: [
-    CommonModule, ReactiveFormsModule,
-    AddressRoutingModule,FormsModule
+    CommonModule, // ReactiveFormsModule,
+    AddressRoutingModule, FormsModule
   ],
   providers: [],
   bootstrap: [AddressComponent]

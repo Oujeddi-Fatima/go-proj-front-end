@@ -4,15 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AcademicRecordRoutingModule } from '../Routing/academicrecord-routing.module';
 import { AcademicRecordComponent } from './academicRecord.component';
 
+
 @NgModule({
-  declarations: [
-    AcademicRecordComponent
-  ],
-  imports: [
-    CommonModule, ReactiveFormsModule,
-    AcademicRecordRoutingModule,FormsModule
-  ],
+  declarations: [AcademicRecordComponent],
+  imports: [CommonModule, AcademicRecordRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AcademicRecordComponent]
 })
-export class AcademicRecordModule { }
+export class AcademicRecordModule {}

@@ -16,4 +16,4 @@ import { GridComponent } from "../Utility/grid.component";
   providers: [],
   bootstrap: [QuestionComponent]
 })
-export class QuestionModule { }
+export class QuestionModule {}
