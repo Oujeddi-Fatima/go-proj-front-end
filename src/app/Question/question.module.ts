@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuestionRoutingModule } from '../Routing/question-routing.module';
 import { QuestionComponent } from './question.component';
+import { GridComponent } from "../Utility/grid.component";
 
 @NgModule({
   declarations: [
-    QuestionComponent
+    QuestionComponent,GridComponent
   ],
   imports: [
     CommonModule, ReactiveFormsModule,

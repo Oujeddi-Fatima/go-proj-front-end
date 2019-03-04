@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserRoutingModule } from '../Routing/user-routing.module';
 import { UserComponent } from './user.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { UserComponent } from './user.component';
   ],
   imports: [
     CommonModule, ReactiveFormsModule,
-    UserRoutingModule,FormsModule
+    UserRoutingModule,FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [UserComponent]

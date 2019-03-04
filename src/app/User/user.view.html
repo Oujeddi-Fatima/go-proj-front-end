@@ -1,30 +1,38 @@
-<form [formGroup]="user.formGroup">
+<form class="form-group" [formGroup]="user.formGroup">
       <h1>User Information</h1>
-      <div>
-            First Name: <input [ngModelOptions]="{standalone: true}" [(ngModel)]=user.firstName type="text">
-            <br> Last Name: <input [ngModelOptions]="{standalone: true}" [(ngModel)]=user.lastName type="text">
-            <br> Email: <input formControlName="email" [(ngModel)]=user.email type="text">
-            <br> Phone Number: <input formControlName="phoneNumber" [(ngModel)]=user.phoneNumber type="text">
-            <br> Date Of Birth: <input formControlName="dateOfBirth" [(ngModel)]=user.dateOfBirth type="text">
-            <br> <input [disabled]="!(user.formGroup.valid)" type="button" value="Regiser" (click)="add()">
+      <div *ngIf="message != ''" class="alert alert-success alert-dismissible col-4">
+                  {{message}}
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+            </div>
+      <div class="col-4">
+            <input type="hidden" [ngModelOptions]="{standalone: true}" [(ngModel)]=user.id>
+            <div class="form-group">
+                  <label for="">First Name:</label> <input class="form-control" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]=user.firstName type="text"></div>
+            <div class="form-group">
+                  <label for="">Last Name:</label> <input class="form-control" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]=user.lastName type="text"></div>
+            <div class="form-group">
+                  <label for="">Email:</label> <input class="form-control" formControlName="email"
+                        [(ngModel)]=user.email type="text"></div>
+            <div class="form-group">
+                  <label for="">Phone Number:</label> <input class="form-control" formControlName="phoneNumber"
+                        [(ngModel)]=user.phoneNumber type="text"></div>
+            <div class="form-group">
+                  <label for="">Date Of Birth:</label> <input class="form-control" formControlName="dateOfBirth"
+                        [(ngModel)]=user.dateOfBirth type="text"></div>
+            <div class="form-group ">
+                  <input class="btn btn-primary float-right" [disabled]="!(user.formGroup.valid)" type="button"
+                        value="Update & Save" (click)="add()"></div>
+            
       </div>
       <div *ngIf="user.formGroup.dirty">
-            <p [hidden]="!(hasError('email','required'))"> Email is required</p>
-            <p [hidden]="!(hasError('phoneNumber','required'))"> phoneNumber is required</p>
-            <p [hidden]="!(hasError('dateOfBirth','required'))"> dateOfBirth is required</p>
+            <small class="form-text text-muted text-red" [hidden]="!(hasError('email','required'))"> Email is
+                  required</small>
+            <small class="form-text text-muted red" [hidden]="!(hasError('phoneNumber','required'))"> phoneNumber is
+                  required</small>
+            <small class="form-text text-muted red" [hidden]="!(hasError('dateOfBirth','required'))"> dateOfBirth is
+                  required</small>
       </div>
-      <table>
-            <tr>
-                  <td>{{registeredUser.lastName}}  {{registeredUser.firstName}}</td>
-            </tr>
-            <tr>
-                  <td>{{registeredUser.phoneNumber}}</td>
-            </tr>
-            <tr>
-                  <td>{{registeredUser.dateOfBirth}}</td>
-            </tr>
-            <tr>
-                  <td>{{registeredUser.email}}</td>
-            </tr>
-      </table>
+
 </form>

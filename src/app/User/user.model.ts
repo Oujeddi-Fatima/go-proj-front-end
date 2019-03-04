@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 
 export class User {
+  id: String;
   firstName: String = "";
   lastName: String = "";
   email: String = "";
@@ -14,15 +15,21 @@ export class User {
   dateOfBirth: Date = null;
 
   formGroup: FormGroup = null;
-  constructor(){
-      var _builder = new FormBuilder();
-      this.formGroup = _builder.group({});
+  constructor() {
+    var _builder = new FormBuilder();
+    this.formGroup = _builder.group({});
 
-    this.formGroup.addControl("email", new FormControl('', Validators.required)
+    this.formGroup.addControl(
+      "email",
+      new FormControl("", Validators.required)
     );
-    this.formGroup.addControl("phoneNumber", new FormControl('', Validators.required)
+    this.formGroup.addControl(
+      "phoneNumber",
+      new FormControl("", Validators.required)
     );
-    this.formGroup.addControl("dateOfBirth", new FormControl('', Validators.required)
+    this.formGroup.addControl(
+      "dateOfBirth",
+      new FormControl("", Validators.required)
     );
     var validationCollection = [];
     validationCollection.push(Validators.required);
