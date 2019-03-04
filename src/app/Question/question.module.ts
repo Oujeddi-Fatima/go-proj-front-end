@@ -15,4 +15,4 @@ import { QuestionComponent } from './question.component';
   providers: [],
   bootstrap: [QuestionComponent]
 })
-export class QuestionModule { }
+export class QuestionModule {}

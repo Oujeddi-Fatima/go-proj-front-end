@@ -4,7 +4,7 @@ import {
   FormControl,
   Validators,
   FormBuilder
-} from "@angular/forms";
+} from '@angular/forms';
 
 export class AcademicRecord {
   schoolName: String = "";
@@ -12,12 +12,12 @@ export class AcademicRecord {
   startDate: String = "";
   completionDate: String = "";
   gpa: String = "";
-  
+
   formGroup: FormGroup = null;
     constructor() {
       var _builder = new FormBuilder();
       this.formGroup = _builder.group({});
-  
+
       this.formGroup.addControl(
         "",//field name
         new FormControl("", Validators.required)

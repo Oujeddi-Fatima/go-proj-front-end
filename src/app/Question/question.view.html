@@ -1,1 +1,21 @@
 <h1>Question</h1>
+
+<table>
+    <tr>
+        <td>
+            Question
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="question.question">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Answer
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="question.answer">
+        </td>
+    </tr>
+</table>
+<input (click)="addQuestion()" type="button" value="add Question">

@@ -1,1 +1,38 @@
 <h1>Project</h1>
+
+<table>
+    <tr>
+        <td>
+            Title
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="project.title">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+            Description
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="project.description">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Duration
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="project.duration">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Link
+        </td>
+        <td>
+            <input type = "text" [(ngModel)]="project.link">
+        </td>
+    </tr>
+</table>
+<input (click)="addProject()" type="button" value="add Project">

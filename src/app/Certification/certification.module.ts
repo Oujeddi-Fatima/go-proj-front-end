@@ -4,15 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CertificationRoutingModule } from '../Routing/certification-routing.module';
 import { CertificationComponent } from './certification.component';
 
+
 @NgModule({
   declarations: [
-    CertificationComponent
-  ],
-  imports: [
-    CommonModule, ReactiveFormsModule,
-    CertificationRoutingModule,FormsModule
+    CertificationComponent],
+  imports: [CommonModule,
+    CertificationRoutingModule, FormsModule
   ],
   providers: [],
   bootstrap: [CertificationComponent]
 })
-export class CertificationModule { }
+export class CertificationModule {}

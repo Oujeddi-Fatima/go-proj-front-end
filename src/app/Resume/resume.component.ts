@@ -1,11 +1,11 @@
-import { Component, Injector } from "@angular/core";
-import { Resume } from "./resume.model";
-import { ILogger } from "../Utility/logger.component";
+import { Component, Injector } from '@angular/core';
+import { Resume } from './resume.model';
+import { ILogger } from '../Utility/logger.component';
 
 @Component({
   //selector:"resume",
-  templateUrl: "./resume.view.html",
-  styleUrls: ["./resume.component.scss"]
+  templateUrl: './resume.view.html',
+  styleUrls: ['./resume.component.scss']
 })
 export class ResumeComponent {
   resume: Resume = new Resume();
@@ -14,7 +14,7 @@ export class ResumeComponent {
   constructor(_injector: Injector) {
     this.logger = _injector.get("2");
     this.logger.log();
-    
+    this.resume.title = "updated resume";
   }
   addResume() {
     this.resumes.push(this.resume);

@@ -6,7 +6,7 @@ import {
     FormBuilder
   } from "@angular/forms";
   
-export class Class{
+export class Course{
     title:String = "";
   
     formGroup: FormGroup = null;

@@ -10,7 +10,7 @@ import { CourseComponent } from './course.component';
   ],
   imports: [
     CommonModule, ReactiveFormsModule,
-    CourseRoutingModule,FormsModule
+    CourseRoutingModule, FormsModule
   ],
   providers: [],
   bootstrap: [CourseComponent]

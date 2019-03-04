@@ -15,4 +15,4 @@ import { ProjectComponent } from './project.component';
   providers: [],
   bootstrap: [ProjectComponent]
 })
-export class ProjectModule { }
+export class ProjectModule {}
