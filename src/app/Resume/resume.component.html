@@ -1,0 +1,63 @@
+<form class="text-center border border-light p-5" [formGroup]="resume.formGroup">
+  <div class="form-group row">
+    <div class="col-8">
+      <div id="intoduction" class="form-group">
+        <h4 id="intoductionHeading" class="card card-header">
+          Intoduction
+        </h4>
+        <div class="form card-body">
+          <div class="form-group row">
+            <label class="col-3" for="resumeTitle">Resume Title</label>
+            <input class="col form-control" id="resumeTitle" type="text" formControlName="title" [(ngModel)]="resume.title">
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="resumeDesc"> Description </label>
+            <textarea class="col form-control" id="resumeDesc" type="text" formControlName="description" [(ngModel)]="resume.description"
+              rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+      <div id="workExperience" class="form-group">
+        <h4 id="workExperienceHeading" class="card card-header">
+          Work Experience
+        </h4>
+        <div class="form card-body">
+          <app-work-experience (addWorkExperience)="addWorkExperience($event)"></app-work-experience>
+        </div>
+      </div>
+      <div id="academicRecord" class="form-group">
+        <h4 id="academicRecordHeading" class="card card-header">
+          Academic Record
+        </h4>
+        <div class="form card-body">
+          <app-academic-record (addAcademicRecord)="addAcademicRecord($event)"></app-academic-record>
+        </div>
+      </div>
+      <div id="certification" class="form-group">
+        <h4 id="certificationHeading" class="card card-header">
+          Certification
+        </h4>
+        <div class="form card-body">
+          <app-certification (addCertification)="addCertification($event)"></app-certification>
+        </div>
+      </div>
+      <div id="project" class="form-group">
+        <h4 id="projectHeading" class="card card-header">
+          Project
+        </h4>
+        <div class="form card-body">
+          <app-project (addProject)="addProject($event)"></app-project>
+        </div>
+      </div>
+      <div id="project" class="form-group">
+        <h4 id="skillHeading" class="card card-header">
+          Skill
+        </h4>
+        <div class="form card-body">
+          <app-skill (addSkill)="addSkill($event)"></app-skill>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary float-right" (click)="saveResume()">Save</button>
+</form>

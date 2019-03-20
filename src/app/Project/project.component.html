@@ -1,0 +1,19 @@
+<div class="form-group row">
+    <label class="col-3" for="projecttitle">Title</label>
+    <input class="col form-control" id="projecttitle" type="text" [(ngModel)]="project.title">
+</div>
+<div class="form-group row">
+    <label class="col-3" for="projdescription">Description</label>
+    <textarea class="col form-control" id="projdescription" type="text" [(ngModel)]="project.description"
+        rows="2"></textarea>
+</div>
+
+<div class="form-group row">
+    <label class="col-3" for="duration">Duration</label>
+    <input class="col form-control" id="duration" type="text" [(ngModel)]="project.duration">
+</div>
+<div class="form-group row">
+    <label class="col-3" for="projectlink">Link</label>
+    <input class="col form-control" id="projectlink" type="text" [(ngModel)]="project.link">
+</div>
+<input type="submit" value="add" (click)="add()">

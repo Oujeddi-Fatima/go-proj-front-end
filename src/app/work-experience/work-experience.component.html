@@ -1,0 +1,40 @@
+<div class="form-group row" role="group">
+    <label class="col-2" for="sd">Start Date</label>
+    <div class="btn-group input-group col-3">
+        <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="workExperience.startDate" ngbDatepicker
+            [dayTemplate]="customDay" [markDisabled]="isDisabled" #sd="ngbDatepicker">
+        <div class="input-group-btn">
+            <button class="btn calendar btn-grey btn-rounded" (click)="sd.toggle()" type="button"></button>
+        </div>
+    </div>
+    <label class="col-2" for="ed">End Date</label>
+    <div class="btn-group input-group col-3">
+        <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="workExperience.finishDate" ngbDatepicker
+            [dayTemplate]="customDay" [markDisabled]="isDisabled" #ed="ngbDatepicker">
+        <div class="input-group-btn">
+            <button class="btn calendar btn-grey btn-rounded" (click)="ed.toggle()" type="button"></button>
+        </div>
+    </div>
+    <div class="custom-control custom-checkbox col">
+        <input type="checkbox" class="custom-control-input" id="isCurrent" [(ngModel)]="workExperience.isCurrent">
+        <label class="custom-control-label" for="isCurrent">Current</label>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-3" for="weTitle">Title</label>
+    <input class="col form-control" id="weTitle" type="text" [(ngModel)]="workExperience.title">
+</div>
+<div class="form-group row">
+        <label class="col-3" for="company">Company / Organization</label>
+        <input class="col form-control" id="company" type="text" [(ngModel)]="workExperience.company">
+</div>
+<div class="form-group row">
+        <label class="col-3" for="tasks">Tasks</label>
+        <input class="col form-control" id="tasks" type="text" [(ngModel)]="workExperience.tasks">
+</div>
+<div class="form-group row">
+        <label class="col-3" for="achievements">Achievements</label>
+        <input class="col form-control" id="achievements" type="text" [(ngModel)]="workExperience.achievements">
+</div>
+<input type="submit" value="add" (click)="add()">

@@ -7,10 +7,12 @@ import {
 } from "@angular/forms";
 
 export class Certification {
+  id:string="";
   title: String = "";
   completionDate: String = "";
   expirationDate: String = "";
   description: String = "";
+  link:string="";
   
   formGroup: FormGroup = null;
     constructor() {

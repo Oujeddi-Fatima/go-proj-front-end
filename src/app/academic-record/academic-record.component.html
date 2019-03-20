@@ -1,0 +1,38 @@
+<div class="form-group row" role="group">
+    <label class="col-2" for="sd">Enrollment Date</label>
+    <div class="btn-group input-group col-4">
+        <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="academicRecord.enrollmentDate" ngbDatepicker
+            [dayTemplate]="customDay" [markDisabled]="isDisabled" #ed="ngbDatepicker">
+        <div class="input-group-btn">
+            <button class="btn calendar btn-grey btn-rounded" (click)="ed.toggle()" type="button"></button>
+        </div>
+    </div>
+    <label class="col-2" for="ed">Completion/Expected Date</label>
+    <div class="btn-group input-group col-4">
+        <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="academicRecord.completionDate" ngbDatepicker
+            [dayTemplate]="customDay" [markDisabled]="isDisabled" #cd="ngbDatepicker">
+        <div class="input-group-btn">
+            <button class="btn calendar btn-grey btn-rounded" (click)="cd.toggle()" type="button"></button>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-3" for="degree">Degree</label>
+    <input class="col form-control" id="degree" type="text" [(ngModel)]="academicRecord.degree">
+    <label class="col-3" for="school">School</label>
+    <input class="col form-control" id="school" type="text" [(ngModel)]="academicRecord.school">
+</div>
+<div class="form-group row">
+    <label class="col-3" for="tasks">Tasks</label>
+    <input class="col form-control" id="tasks" type="text" [(ngModel)]="academicRecord.tasks">
+</div>
+<div class="form-group row">
+    <label class="col-3" for="major">Major</label>
+    <input class="col form-control" id="major" type="text" [(ngModel)]="academicRecord.major">
+</div>
+<div class="form-group row">
+        <label class="col-3" for="gpa">GPA</label>
+        <input class="col form-control" id="gpa" type="text" [(ngModel)]="academicRecord.gpa">
+</div>
+<input type="submit" value="add" (click)="add()">

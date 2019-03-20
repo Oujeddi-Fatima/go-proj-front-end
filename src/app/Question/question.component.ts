@@ -1,27 +1,25 @@
-import { Component, Injector } from "@angular/core";
-import { Question } from './question.model';
-import { ILogger } from '../Utility/logger.component';
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Question } from "./question.model";
 
 @Component({
-    //selector:"question",
-    templateUrl:"./question.view.html",
-    styleUrls: ['./question.component.scss']
+  selector: "app-question",
+  templateUrl: "./question.component.html"
 })
-export class  QuestionComponent{
-    question: Question = new Question();
-    questions: Array<Question> = new Array<Question>();
-    logger: ILogger;
-       constructor(_injector: Injector) {
-        this.logger = _injector.get("2");
-        this.logger.log();
-        this.question.answer = 'Updated answer';
-      }
-      addQuestion() {
-        this.questions.push(this.question);
-        this.question = new Question();
-      }
+export class QuestionComponent implements OnInit {
+  @Output() addQuestions: EventEmitter<any> = new EventEmitter();
+  questions: Array<Question> = new Array<Question>();
+  question: Question = new Question();
+  constructor() {}
 
-      selectQuestion(_selectedquestion: Question){
-        this.question = _selectedquestion;
-      }
+  ngOnInit() {}
+
+  addQuestion() {
+    this.questions.push(this.question);
+    this.question = new Question();
+    this.emit();
+  }
+
+  emit(){
+    this.addQuestions.emit(this.questions)
+  }
 }

@@ -1,0 +1,62 @@
+<div class="card bg-transparent form-row align-items-left">
+      <form class="form-group row" [formGroup]="user.formGroup">
+            <div class="col-2"></div>
+            <div class="col-8">
+                  <div class="row">
+                        <div *ngIf="message != ''" class="col-8 alert alert-success alert-dismissible col-4">
+                              {{message}}
+                              <button type="button" class="close" data-dismiss="alert">×</button>
+                        </div>
+                        <div class="col-8">
+                              <input type="hidden" [ngModelOptions]="{standalone: true}" [(ngModel)]=user.id>
+                              <div class="form-group row">
+                                    <input class="form-control" [ngModelOptions]="{standalone: true}"
+                                          [(ngModel)]=user.firstName type="text" placeholder="First Name"></div>
+                              <div class="form-group row">
+                                    <input class="form-control" [ngModelOptions]="{standalone: true}"
+                                          [(ngModel)]=user.lastName type="text" placeholder="Last Name"></div>
+                              <div class="form-group row">
+                                    <input class="form-control" formControlName="email" [(ngModel)]=user.email
+                                          type="text" placeholder="Email">
+                              </div>
+                              <div class="form-group row">
+                                    <div class="col-1"></div>
+                                    <input class="form-control col-4" formControlName="phoneNumber"
+                                          [(ngModel)]=user.phoneNumber type="text" placeholder="Phone Number">
+                                    <div class="col-2"></div>
+                                    <div class="btn-group input-group col-4" id="dob">
+                                          <input class="form-control" placeholder="Date Of Birth"
+                                                [(ngModel)]="user.dateOfBirth" ngbDatepicker [dayTemplate]="customDay"
+                                                [markDisabled]="isDisabled" #dob="ngbDatepicker"
+                                                formControlName="dateOfBirth">
+                                          <div class="input-group-btn">
+                                                <button class="btn calendar btn-grey btn-rounded" (click)="dob.toggle()"
+                                                      type="button"></button>
+                                          </div>
+                                    </div>
+                                    <div class="col-1"></div>
+                              </div>
+                              <app-address (addAddress)="addAddress($event)" [address]="user.address"></app-address>
+                              <div class="form-group ">
+                                    <input class="btn btn-primary float-right" [disabled]="!(user.formGroup.valid)"
+                                          type="button" value="Update & Save" (click)="add()"></div>
+
+                        </div>
+                  </div>
+            </div>
+            <div class="col" *ngIf="user.formGroup.dirty">
+                  <div class="row">
+                        <small class="alert alert-danger" role="alert" [hidden]="!(hasError('email','required'))">
+                              Email is required </small>
+                  </div>
+                  <div class="row">
+                        <small class="alert alert-danger" role="alert" [hidden]="!(hasError('phoneNumber','required'))">
+                              phoneNumber is required</small>
+                  </div>
+                  <div class="row">
+                        <small class="alert alert-danger" role="alert" [hidden]="!(hasError('dateOfBirth','required'))">
+                              dateOfBirth is required</small>
+                  </div>
+            </div>
+      </form>
+</div>

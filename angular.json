@@ -3,31 +3,41 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "goproj": {
+    "getEmployed": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "css"
-        }
-      },
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/goproj",
+            "outputPath": "dist/getEmployed",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/img",
+              "src/assets/img/bg-1.jpg",
+              "src/assets/img/icons",
+              "src/assets/css",
+              "src/assets/fonts",
+              "src/assets/js",
+              "src/assets/assets",
+              "src/assets/assets/chart-master",
+              "src/assets/assets/ckeditor",
+              "src/assets/assets/fullcalendar",
+              "src/assets/assets/jquery-easy-pie-chart",
+              "src/assets/assets/jquery-knob",
+              "src/assets/assets/jquery-ui",
+              "src/assets/assets/morris.js-0.4.3"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -62,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "goproj:build"
+            "browserTarget": "getEmployed:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "goproj:build:production"
+              "browserTarget": "getEmployed:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "goproj:build"
+            "browserTarget": "getEmployed:build"
           }
         },
         "test": {
@@ -89,13 +99,7 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/assets/assets",
-              "src/assets/css",
-              "src/assets/contactform",
-              "src/assets/fonts",
-              "src/assets/img",
-              "src/assets/js"
+              "src/assets"
             ]
           }
         },
@@ -113,7 +117,7 @@
         }
       }
     },
-    "goproj-e2e": {
+    "getEmployed-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -122,11 +126,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "goproj:serve"
+            "devServerTarget": "getEmployed:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "goproj:serve:production"
+              "devServerTarget": "getEmployed:serve:production"
             }
           }
         },
@@ -142,5 +146,5 @@
       }
     }
   },
-  "defaultProject": "goproj"
+  "defaultProject": "getEmployed"
 }

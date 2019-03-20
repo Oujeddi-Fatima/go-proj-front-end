@@ -1,0 +1,72 @@
+<form class="text-center border border-light p-5" [formGroup]="recJobPost.formGroup">
+  <div class="form-group row">
+    <div class="col-8">
+      <div id="intoduction" class="form-group">
+        <div class="form card-body">
+          <div class="form-group row">
+            <label class="col-3" for="recJobPostTitle">Job Title</label>
+            <input class="col form-control" id="recJobPostTitle" type="text" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="recJobPost.Title">
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="infoNumber"> Level</label>
+            <input class="col form-control" id="infoNumber" type="text" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="recJobPost.level">
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="primeObjective"> Description</label>
+            <textarea class="col form-control" id="primeObjective" type="text" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="recJobPost.description" rows="3"></textarea>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="vision"> Requirements</label>
+            <textarea class="col form-control" id="vision" type="text" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="recJobPost.requirement" rows="3"></textarea>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="mission"> Required Qualifications</label>
+            <textarea class="col form-control" id="mission" type="text" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="recJobPost.requiredQalification" rows="3"></textarea>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="sd"> Open Untill</label>
+            <div class="btn-group input-group col" id="sd">
+              <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="recJobPost.closeDate" ngbDatepicker
+                [dayTemplate]="customDay" [markDisabled]="isDisabled" #sd="ngbDatepicker"
+                [ngModelOptions]="{standalone: true}">
+              <div class="input-group-btn">
+                <button class="btn calendar btn-grey btn-rounded" (click)="sd.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="fax"> Estimated Salary</label>
+            <input class="col form-control" id="fax" type="text" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="recJobPost.estimatedSalary">
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="fax"> Company Name</label>
+            <input class="col form-control" id="fax" type="text" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="recJobPost.company.name">
+          </div>
+          <div class="form-group row">
+            <div class="col">
+              <app-skill (addSkill)="addSkill($event)"></app-skill>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col">
+              <app-question (addQuestions)="addQuestions($event)"></app-question>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-4"></div>
+            <app-address (addAddress)="addAddress($event)"></app-address>
+          </div>
+
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary float-right" (click)="save()">Save</button>
+    </div>
+  </div>
+</form>

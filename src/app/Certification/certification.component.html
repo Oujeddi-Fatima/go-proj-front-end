@@ -1,0 +1,34 @@
+<div class="form-group row">
+    <label class="col-3" for="title">Title</label>
+    <input class="col form-control" id="title" type="text" [(ngModel)]="certification.title">
+</div>
+<div class="form-group row">
+    <label class="col-3" for="certDescription">Description</label>
+    <textarea class="col form-control" id="certDescription" type="text" [(ngModel)]="certification.description"
+              rows="2"></textarea>
+</div>
+
+<div class="form-group row" role="group">
+    <label class="col-3" for="certcd">Completion Date</label>
+    <div class="btn-group input-group col">
+        <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="certification.completionDate" ngbDatepicker
+            [dayTemplate]="customDay" [markDisabled]="isDisabled" #certcd="ngbDatepicker">
+        <div class="input-group-btn">
+            <button class="btn calendar btn-grey btn-rounded" (click)="certcd.toggle()" type="button"></button>
+        </div>
+    </div>
+    <label class="col-3" for="certvd">Valid Untill</label>
+    <div class="btn-group input-group col">
+        <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="certification.expirationDate" ngbDatepicker
+            [dayTemplate]="customDay" [markDisabled]="isDisabled" #certvd="ngbDatepicker">
+        <div class="input-group-btn">
+            <button class="btn calendar btn-grey btn-rounded" (click)="certvd.toggle()" type="button"></button>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-3" for="link">Link</label>
+    <input class="col form-control" id="link" type="text" [(ngModel)]="certification.link">
+</div>
+<input type="submit" value="add" (click)="add()">

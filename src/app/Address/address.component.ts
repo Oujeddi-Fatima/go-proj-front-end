@@ -1,32 +1,26 @@
-import { Component, Injector } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from "@angular/core";
 import { Address } from './address.model';
-import { ILogger } from '../Utility/logger.component';
-
 
 @Component({
-    // selector:"address",
-    templateUrl: './address.view.html',
-    styleUrls: ['./address.component.scss']
+  selector: 'app-address',
+  templateUrl: './address.component.html'
 })
-export class  AddressComponent {
-    address: Address = new Address();
+export class AddressComponent implements OnInit {
+  @Output() addAddress: EventEmitter<any> = new EventEmitter();
+  @Input()
+  address:Address = new Address();
+  constructor() { }
 
-    addresses: Array<Address> = new Array<Address>();
-    logger: ILogger;
+  ngOnInit() {
+  }
 
-       constructor(_injector: Injector) {
-
-        this.logger = _injector.get("2");
-        this.logger.log();
-        this.address.street = 'updated street';
-      }
-      addAddress() {
-        this.addresses.push(this.address);
-        this.address = new Address();
-      }
-
-      selectAddress(_selectedAddress: Address){
-        this.address = _selectedAddress;
-      }
+  add(){
+    const data: any = {};
+    data.id = this.address.id;
+    data.city = this.address.city;
+    data.state = this.address.state;
+    data.street = this.address.street;
+    data.zipCode = this.address.zipCode;
+    this.addAddress.emit(data);
+  }
 }
-

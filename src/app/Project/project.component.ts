@@ -1,27 +1,24 @@
-import { Component, Injector } from "@angular/core";
-import { Project } from './project.model';
-import { ILogger } from '../Utility/logger.component';
-
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Project } from "./project.model";
 @Component({
-    //selector:"project",
-    templateUrl:"./project.view.html",
-    styleUrls: ['./project.component.scss']
+  selector: "app-project",
+  templateUrl: "./project.component.html"
 })
-export class  ProjectComponent{
-    project: Project = new Project();
-    projects: Array<Project> = new Array<Project>();
-    logger: ILogger;
-       constructor(_injector: Injector) {
-        this.logger = _injector.get("2");
-        this.logger.log();
-        this.project.title = 'Updated Title';
-      }
-      addProject() {
-        this.projects.push(this.project);
-        this.project = new Project();
-      }
+export class ProjectComponent implements OnInit {
+  project: Project = new Project();
+  @Output() addProject: EventEmitter<any> = new EventEmitter();
+  constructor() {}
 
-      selectProject(_selectedproject: Project){
-        this.project = _selectedproject;
-      }
+  ngOnInit() {}
+
+  add(){
+    const data: any = {};
+    data.id = this.project.id;
+    data.description = this.project.description;
+    data.duration = this.project.duration;
+    data.link = this.project.link;
+    data.title = this.project.title;
+    this.addProject.emit(data);
+    this.project = new Project();
+  }
 }

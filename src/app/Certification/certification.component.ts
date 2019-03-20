@@ -1,27 +1,25 @@
-import { Component, Injector } from "@angular/core";
-import { Certification } from './certification.model';
-import { ILogger } from '../Utility/logger.component';
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Certification } from "./certification.model";
 @Component({
-    //selector:"certification",
-    templateUrl:"./certification.view.html",
-    styleUrls: ['./certification.component.scss']
+  selector: "app-certification",
+  templateUrl: "./certification.component.html",
+  styleUrls: ["./certification.component.css"]
 })
-export class CertificationComponent {
-    certification: Certification = new Certification();
-    certifications: Array<Certification> = new Array<Certification>();
-    logger: ILogger;
-       constructor(_injector: Injector) {
-        this.logger = _injector.get("2");
-        this.logger.log();
-        this.certification.title= 'Updated Title';
-      }
+export class CertificationComponent implements OnInit {
+  certification: Certification = new Certification();
+  @Output() addCertification: EventEmitter<any> = new EventEmitter();
+  constructor() {}
 
-      addCertification() {
-        this.certifications.push(this.certification);
-        this.certification = new Certification();
-      }
-    
-    selectCertification(_selectedcertification: Certification){
-        this.certification = _selectedcertification;
-      }
+  ngOnInit() {}
+  add() {
+    const data: any = {};
+    data.id = this.certification.id;
+    data.description = this.certification.description;
+    data.expirationDate = this.certification.expirationDate;
+    data.completionDate = this.certification.completionDate;
+    data.link = this.certification.link;
+    data.title = this.certification.title;
+    this.addCertification.emit(data);
+    this.certification = new Certification();
+  }
 }

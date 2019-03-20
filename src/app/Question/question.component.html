@@ -1,0 +1,16 @@
+<div class="form card-body">
+  <div *ngFor="let p of  questions;  let j = index" class="form-group row">
+    <label class="col-3" for="`question{{j}`">Question {{j+1}} : </label>
+              <span class=" col table" id="`question{{j}}`"> {{p.question}}</span>
+  </div>
+  <div class="form-group row">
+    <label class="col-3" for="question"> Question Statement</label>
+    <div class="btn-group input-group col">
+      <input class="col form-control" id="question" type="text" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="question.question">
+      <div class="input-group-btn">
+        <button class="btn btn-grey btn-rounded" (click)="addQuestion()" type="button">add</button>
+      </div>
+    </div>
+  </div>
+</div>

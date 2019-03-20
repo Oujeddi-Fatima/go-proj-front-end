@@ -1,28 +1,68 @@
-import { Component, Injector } from "@angular/core";
-import { Company } from './company.model';
-import { ILogger } from '../Utility/logger.component';
-
-
+import { Component, OnInit } from "@angular/core";
+import { Company } from "./company.model";
+import { AuthenticationService } from "../authentication.service";
+import { HttpClientService } from "../http-client.service";
+import { Address } from "../address/address.model";
+import {
+  NgbDateParserFormatter,
+  NgbDateStruct
+} from "@ng-bootstrap/ng-bootstrap";
 @Component({
-    //selector:"company",
-    templateUrl:"./company.view.html",
-    styleUrls: ['./company.component.scss']
+  selector: "app-company",
+  templateUrl: "./company.component.html"
 })
-export class  CompanyComponent{
-    company: Company = new Company();
-    companies: Array<Company> = new Array<Company>();
-    logger: ILogger;
-       constructor(_injector: Injector) {
-        this.logger = _injector.get("2");
-        this.logger.log();
-        this.company.name= 'Updated name';
-      }
-      addCompany() {
-        this.companies.push(this.company);
-        this.company = new Company();
-      }
+export class CompanyComponent implements OnInit {
+  company: Company = new Company();
+  contact: string = "";
+  phone: string = "";
+  constructor(
+    private authService: AuthenticationService,
+    private httpClient: HttpClientService,
+    private ngbDateParserFormatter: NgbDateParserFormatter
+  ) {}
 
-      selectCompany(_selectedcompany: Company){
-        this.company = _selectedcompany;
-      }
+  ngOnInit() {}
+
+  addAddress(address: Address) {
+    this.company.address = address;
+  }
+
+  save() {
+    this.postToServer();
+  }
+
+  addContact() {
+    this.company.contacts.push(this.contact);
+    this.contact = "";
+  }
+
+  addPhone() {
+    this.company.phone.push(this.phone);
+    this.phone = "";
+  }
+
+  postToServer() {
+    let ngbDate: any = this.company.startDate;
+    let startDate = this.ngbDateParserFormatter.format(ngbDate);
+    const cust: any = {};
+
+    cust.id = this.company.id;
+    cust.name = this.company.name;
+    cust.startDate = startDate;
+    cust.businessType = this.company.businessType;
+    cust.primeObjective = this.company.primeObjective;
+    cust.mission = this.company.mission;
+    cust.vision = this.company.vision;
+    cust.infoNumber = this.company.infoNumber;
+    cust.contacts = this.company.contacts;
+    cust.fax = this.company.fax;
+    cust.phone = this.company.phone;
+    cust.address = this.company.address;
+    cust.employer = {};
+    cust.employer.id = this.company.employer.id;
+
+    this.httpClient
+      .postToServer("company", cust)
+      .subscribe(data => console.log(data), err => console.log(err));
+  }
 }

@@ -1,0 +1,41 @@
+<div class="full-width-div">
+  <div class="row transparent">
+    <div class="d-flex justify-content-around justify-content-center 
+    align-items-start w-100 deep-purple darken-4 card-header ">
+      <h1 class="lead display-4 center m-l-100 ">
+        <a href="/" class="logo white-text">Get <span class="white-text">Employed</span></a>
+      </h1>
+    </div>
+    <div class="container-fluid deep-purple accent-4  w-100 h-5 ">
+      <div class="row">
+        <div class="col">
+          <app-sidebar></app-sidebar>
+        </div>
+        <div class="col d-flex justify-content-around justify-content-right">
+          <span class="white-text d-flex align-items-end">
+            Welcome {{authService.authModel.username}}
+          </span>
+        </div>
+        <div class="col-8 nav search-row d-flex justify-content-around justify-content-right">
+          <app-job-search-form></app-job-search-form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      some content
+    </div>
+    <div class="card card-cascade wider bg-transparent col-8 transparent">
+      <div class="breadcrumb view view-cascade gradient-card-header bg-transparent text-left">
+        <p class="card-title mb-3">Home / Dashboard</p>
+      </div>
+      <div class="card-body card-body-cascade text-center bg-transparent">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <div class="col-2">
+      some content
+    </div>
+  </div>
+</div>
