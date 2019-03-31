@@ -1,7 +1,13 @@
 <div class=" card-cascade  deep-purple accent-4 ">
   <div class="btn-group" role="group">
-    <button id="navbar" type="button" class="btn btn-secondary " data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
+    <button
+      id="navbar"
+      type="button"
+      class="btn btn-secondary "
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
       Menu
     </button>
     <div class="dropdown-menu" aria-labelledby="navbar">
@@ -16,13 +22,15 @@
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" [routerLink]="['/company']">Company</a>
       <a class="dropdown-item" [routerLink]="['/manage/posts']">Job Posts</a>
-      <a class="dropdown-item" [routerLink]="['/manage/applications']">Applications</a>
+      <a class="dropdown-item" [routerLink]="['/manage/applications']"
+        >Applications</a
+      >
       <div class="dropdown-divider"></div>
       <h5 class="  ">Job Search</h5>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" [routerLink]="['/']">Submitted Applications</a>
       <a class="dropdown-item" [routerLink]="['/']">Saved Jobs</a>
-      <a class="dropdown-item" [routerLink]="['/']">Search Jobs</a>
+      <a class="dropdown-item" [routerLink]="['/job/search']">Search Jobs</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#">My Notes</a>
       <div class="dropdown-divider"></div>

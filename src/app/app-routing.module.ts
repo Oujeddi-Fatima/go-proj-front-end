@@ -11,6 +11,7 @@ import { CompanyComponent } from "./company/company.component";
 import { RecJobPostsComponent } from "./rec-job-posts/rec-job-posts.component";
 import { RecApplicationsComponent } from "./rec-applications/rec-applications.component";
 import { from } from "rxjs";
+import { SearchJobComponent } from "./search-job/search-job.component";
 
 const homeRoutes: Routes = [
   {
@@ -41,6 +42,11 @@ const homeRoutes: Routes = [
   {
     path: "manage/applications",
     component: RecApplicationsComponent,
+    canActivate: [SecurityGuard]
+  },
+  {
+    path: "job/search",
+    component: SearchJobComponent,
     canActivate: [SecurityGuard]
   }
 ];
