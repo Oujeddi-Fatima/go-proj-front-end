@@ -7,6 +7,7 @@ import {
 } from "@angular/router";
 import { AuthenticationService } from "../authentication.service";
 import { HttpClientService } from "../http-client.service";
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: "app-login",
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
         password: this.authService.authModel.password
       })
       .subscribe(
-        data => {
+        (data : any) => {
           if (data != null) {
             this.authService.authModel.user = data;
             this.authService.authenticate();

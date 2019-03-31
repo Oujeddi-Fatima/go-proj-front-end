@@ -108,6 +108,7 @@ export class ResumeComponent implements OnInit {
     data.skills = this.resume.skills;
     data.workExperiences = this.resume.workExperiences;
     data.academicRecords = this.resume.academicRecords;
+    data.certifications = this.resume.certifications;
 
     this.httpClient
       .postToServer("user/" + data.user.userId + "/resume", data)

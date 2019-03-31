@@ -1,0 +1,37 @@
+<div class="body login-img3-body">
+  <form class="login-form" [formGroup]="signUp.formGroup">
+    <div class="login-wrap">
+      <p class="login-img"><i class="icon_profile"></i></p>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="icon_profile"></i></span>
+
+        <input type="text" [(ngModel)]=signUp.username class="form-control" formControlName="username"
+          placeholder="Username" autofocus>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+        <input type="password" formControlName="password" [(ngModel)]=signUp.password class="form-control"
+          placeholder="Password">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+        <input type="password" formControlName="confirmPassword" [(ngModel)]=signUp.confirmPassword class="form-control"
+          placeholder="Confirm Password">
+      </div>
+      <div class="input-group">
+        <div class="form-check">
+          <label for="recCheckbx" class="form-check-label">
+            I am a Recruiter&nbsp;&nbsp;&nbsp;
+          </label>
+          <input id="recCheckbx" type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]=signUp.isEmployer
+            class="form-check-input" placeholder="">
+
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg btn-block" (click)="signup()" type="submit"
+        [disabled]="!(signUp.formGroup.valid)">Register</button>
+    </div>
+  </form>
+  <div class="text-right">
+  </div>
+</div>

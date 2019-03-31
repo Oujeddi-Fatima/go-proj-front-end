@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Company } from "./company.model";
 import { AuthenticationService } from "../authentication.service";
 import { HttpClientService } from "../http-client.service";
 import { Address } from "../address/address.model";

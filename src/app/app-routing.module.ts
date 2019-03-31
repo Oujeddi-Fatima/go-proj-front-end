@@ -12,6 +12,8 @@ import { RecJobPostsComponent } from "./rec-job-posts/rec-job-posts.component";
 import { RecApplicationsComponent } from "./rec-applications/rec-applications.component";
 import { from } from "rxjs";
 import { SearchJobComponent } from "./search-job/search-job.component";
+import { EmployeeRoleGuard } from "./employee-role.guard";
+import { SignUpComponent } from "./sign-up/sign-up.component";
 
 const homeRoutes: Routes = [
   {
@@ -30,19 +32,19 @@ const homeRoutes: Routes = [
     canActivate: [SecurityGuard]
   },
   {
-    path: "company",
+    path: "companies",
     component: CompanyComponent,
-    canActivate: [SecurityGuard]
+    canActivate: [SecurityGuard, EmployeeRoleGuard]
   },
   {
     path: "manage/posts",
     component: RecJobPostsComponent,
-    canActivate: [SecurityGuard]
+    canActivate: [SecurityGuard, EmployeeRoleGuard]
   },
   {
     path: "manage/applications",
     component: RecApplicationsComponent,
-    canActivate: [SecurityGuard]
+    canActivate: [SecurityGuard, EmployeeRoleGuard]
   },
   {
     path: "job/search",
@@ -53,6 +55,7 @@ const homeRoutes: Routes = [
 
 const landingRoutes: Routes = [
   { path: "login", component: LoginComponent },
+  { path: "signup", component: SignUpComponent },
   {
     path: "",
     component: LandingPageComponent,

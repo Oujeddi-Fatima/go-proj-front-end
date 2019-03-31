@@ -20,15 +20,17 @@ import { CertificationComponent } from "./certification/certification.component"
 import { ProjectComponent } from "./project/project.component";
 import { SkillComponent } from "./skill/skill.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { CourseComponent } from './course/course.component';
-import { CompanyComponent } from './company/company.component';
-import { RecJobPostsComponent } from './rec-job-posts/rec-job-posts.component';
-import { RecApplicationsComponent } from './rec-applications/rec-applications.component';
-import { AddressComponent } from './address/address.component';
-import { QuestionComponent } from './question/question.component';
-import { CanJobPostComponent } from './can-job-post/can-job-post.component';
-import { ResumeCardComponent } from './resume-card/resume-card.component';
-import { SearchJobComponent } from './search-job/search-job.component';
+import { CourseComponent } from "./course/course.component";
+import { CompanyComponent } from "./company/company.component";
+import { RecJobPostsComponent } from "./rec-job-posts/rec-job-posts.component";
+import { RecApplicationsComponent } from "./rec-applications/rec-applications.component";
+import { AddressComponent } from "./address/address.component";
+import { QuestionComponent } from "./question/question.component";
+import { CanJobPostComponent } from "./can-job-post/can-job-post.component";
+import { ResumeCardComponent } from "./resume-card/resume-card.component";
+import { SearchJobComponent } from "./search-job/search-job.component";
+import { SignUpComponent } from "./sign-up/sign-up.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,8 @@ import { SearchJobComponent } from './search-job/search-job.component';
     QuestionComponent,
     CanJobPostComponent,
     ResumeCardComponent,
-    SearchJobComponent
+    SearchJobComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

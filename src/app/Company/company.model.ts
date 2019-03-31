@@ -9,7 +9,7 @@ import { User } from "../account/account.model";
 import { Address } from "../address/address.model";
 
 export class Company {
-  id: string = "";
+  companyId: string = "";
   name: string = "";
   infoNumber: string = "";
   primeObjective: string = "";
@@ -36,7 +36,7 @@ export class Company {
 
   public getData() {
     const cust: any = {};
-    cust.id = this.id;
+    cust.companyId = this.companyId;
     cust.name = this.name;
     cust.startDate = this.startDate.year
       ? this.startDate.year

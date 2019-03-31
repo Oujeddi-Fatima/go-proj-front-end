@@ -5,6 +5,8 @@ import {
   Router
 } from "@angular/router";
 import { authenticationModel } from "./authentication.model";
+import { HttpClientService } from "./http-client.service";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: "root"
@@ -12,14 +14,26 @@ import { authenticationModel } from "./authentication.model";
 export class AuthenticationService {
   redirectUrl: string = "/";
   authModel: authenticationModel = new authenticationModel();
-  constructor(private router: Router) {}
+  constructor(private router: Router,private httpClient: HttpClient) {}
 
   authenticate() {
     this.authModel.isAuthenticated = true;
-    this.router.navigate([this.redirectUrl]);
+    this.checkIfEmployer();
   }
 
   isAuthenticated() {
     return this.authModel.isAuthenticated;
+  }
+
+  checkIfEmployer() {
+    return this.httpClient
+      .get(this.authModel.user._links.employer.href)
+      .subscribe((employer: any) => {
+        if (employer != null) {
+          this.authModel.user = employer;
+          this.authModel.isEmployer = true;
+        }
+        this.router.navigate([this.redirectUrl]);
+      });
   }
 }

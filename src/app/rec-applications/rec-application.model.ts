@@ -11,6 +11,7 @@ import { Company } from "../company/company.model";
 import { Skill } from "../skill/skill.model";
 import { Question } from "../question/question.model";
 import { RecJobPost } from "../rec-job-posts/rec-job-posts.model";
+
 import { Resume } from "../resume/resume.model";
 
 export class RecApplication {

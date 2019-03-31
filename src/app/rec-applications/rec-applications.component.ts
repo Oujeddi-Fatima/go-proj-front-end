@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { RecJobPost } from "../rec-job-posts/rec-job-posts.model";
 import { HttpClientService } from "../http-client.service";
+import { RecJobPost } from "../rec-job-posts/rec-job-posts.model";
 
 @Component({
   selector: "app-rec-applications",
