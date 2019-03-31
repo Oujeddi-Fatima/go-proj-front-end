@@ -12,12 +12,12 @@
       <a class="dropdown-item" [routerLink]="['/account']">Profile</a>
       <a class="dropdown-item" [routerLink]="['/resume']">Resume</a>
       <div class="dropdown-divider"></div>
-      <h5 class="  ">Manage</h5>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" [routerLink]="['/company']">Company</a>
-      <a class="dropdown-item" [routerLink]="['/manage/posts']">Job Posts</a>
-      <a class="dropdown-item" [routerLink]="['/manage/applications']">Applications</a>
-      <div class="dropdown-divider"></div>
+      <h5 *ngIf="isEmployer" class="  ">Manage</h5>
+      <div *ngIf="isEmployer" class="dropdown-divider"></div>
+      <a *ngIf="isEmployer" class="dropdown-item" [routerLink]="['/companies']">Company</a>
+      <a *ngIf="isEmployer" class="dropdown-item" [routerLink]="['/manage/posts']">Job Posts</a>
+      <a *ngIf="isEmployer" class="dropdown-item" [routerLink]="['/manage/applications']">Applications</a>
+      <div *ngIf="isEmployer" class="dropdown-divider"></div>
       <h5 class="  ">Job Search</h5>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" [routerLink]="['/']">Submitted Applications</a>

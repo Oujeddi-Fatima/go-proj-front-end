@@ -28,6 +28,7 @@ import { AddressComponent } from './address/address.component';
 import { QuestionComponent } from './question/question.component';
 import { CanJobPostComponent } from './can-job-post/can-job-post.component';
 import { ResumeCardComponent } from './resume-card/resume-card.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { ResumeCardComponent } from './resume-card/resume-card.component';
     AddressComponent,
     QuestionComponent,
     CanJobPostComponent,
-    ResumeCardComponent
+    ResumeCardComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

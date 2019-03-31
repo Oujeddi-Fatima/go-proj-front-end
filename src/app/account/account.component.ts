@@ -3,21 +3,27 @@ import { User } from "./account.model";
 import { AuthenticationService } from "../authentication.service";
 import { HttpClientService } from "../http-client.service";
 import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
-import { Address } from '../address/address.model';
+import { Address } from "../address/address.model";
 @Component({
   selector: "app-account",
   templateUrl: "./account.component.html",
-  styles: [`#dob{     padding-right : 0px;
-                      padding-left : 0px; }`]
+  styles: [
+    `#dob{     padding-right : 0px;
+                      padding-left : 0px; }`
+  ]
 })
 export class AccountComponent implements OnInit {
   ngOnInit() {}
   userId: String = "";
+  uri: string = "user";
   constructor(
     private authService: AuthenticationService,
     private httpClient: HttpClientService,
     private ngbDateParserFormatter: NgbDateParserFormatter
   ) {
+    if(this.authService.authModel.isEmployer){
+      this.uri = "employer";
+    }
     this.userId = this.authService.authModel.user.userId;
     this.getUserInfo();
   }
@@ -47,12 +53,12 @@ export class AccountComponent implements OnInit {
     cust.id = this.registeredUser.userId;
     cust.address = this.registeredUser.address;
     this.httpClient
-      .postToServer("user", cust)
+      .postToServer(this.uri, cust)
       .subscribe(data => {}, err => console.log(err));
   }
 
   getUserInfo() {
-    this.httpClient.getFromServer("user/" + this.userId).subscribe(
+    this.httpClient.getFromServer(this.uri + "/" + this.userId).subscribe(
       (data: User) => {
         this.user.formGroup.controls["dateOfBirth"].setValue(
           this.ngbDateParserFormatter.parse(data.dateOfBirth)

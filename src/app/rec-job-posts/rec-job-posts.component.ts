@@ -8,6 +8,9 @@ import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 import { formatDate } from "@angular/common";
 import { Subject } from "rxjs";
 import { SkillStructure } from "../skill/skill.structure";
+import { RecJobPostsStructure } from "./rec-job-posts.structure";
+import { AuthenticationService } from '../authentication.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: "app-rec-job-posts",
@@ -15,18 +18,32 @@ import { SkillStructure } from "../skill/skill.structure";
 })
 export class RecJobPostsComponent implements OnInit {
   recJobPost: RecJobPost = new RecJobPost();
-  savedRecJobPost : Array<RecJobPost> = new Array<RecJobPost>();
+  recJobPosts: Array<RecJobPost> = new Array<RecJobPost>();
+  savedRecJobPost: Array<RecJobPost> = new Array<RecJobPost>();
   private eventsSubject: Subject<any> = new Subject<any>();
   skillStructure: SkillStructure = new SkillStructure();
+  recJobPostStructure: RecJobPostsStructure = new RecJobPostsStructure();
   emitEventToChild(event) {
     this.eventsSubject.next(event);
   }
 
   constructor(
+    private authService: AuthenticationService,
     private httpClient: HttpClientService,
     private ngbDateParserFormatter: NgbDateParserFormatter
   ) {
-
+    this.httpClient
+      .getFromServerHref(this.authService.authModel.user._links.companies.href)
+      .subscribe((companies: Array<RecJobPost>) => {
+        companies.forEach(company => {
+          if (company != null) {
+            const formGroup: FormGroup = this.recJobPost.formGroup;
+            company.formGroup = formGroup;
+          }
+        });
+        this.recJobPosts = companies;
+      });
+    this.recJobPost.employer.userId = this.authService.authModel.user.userId;
   }
 
   ngOnInit() {}
@@ -46,8 +63,6 @@ export class RecJobPostsComponent implements OnInit {
   addQuestions(question: Array<Question>) {
     this.recJobPost.questions.concat(question);
   }
-
-
 
   save() {
     const data: any = {};

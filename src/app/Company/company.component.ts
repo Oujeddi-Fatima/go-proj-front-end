@@ -7,19 +7,36 @@ import {
   NgbDateParserFormatter,
   NgbDateStruct
 } from "@ng-bootstrap/ng-bootstrap";
+import { FormGroup } from "@angular/forms";
+import { CompanyStructure } from "./company.structure";
 @Component({
   selector: "app-company",
   templateUrl: "./company.component.html"
 })
 export class CompanyComponent implements OnInit {
+  companies: Array<Company> = new Array<Company>();
   company: Company = new Company();
   contact: string = "";
   phone: string = "";
+  companyStructure: CompanyStructure = new CompanyStructure();
   constructor(
     private authService: AuthenticationService,
     private httpClient: HttpClientService,
     private ngbDateParserFormatter: NgbDateParserFormatter
-  ) {}
+  ) {
+    this.httpClient
+      .getFromServerHref(this.authService.authModel.user._links.companies.href)
+      .subscribe((companies: Array<Company>) => {
+        companies.forEach(company => {
+          if (company != null) {
+            const formGroup: FormGroup = this.company.formGroup;
+            company.formGroup = formGroup;
+          }
+        });
+        this.companies = companies;
+      });
+    this.company.employer.userId = this.authService.authModel.user.userId;
+  }
 
   ngOnInit() {}
 
@@ -46,7 +63,7 @@ export class CompanyComponent implements OnInit {
     let startDate = this.ngbDateParserFormatter.format(ngbDate);
     const cust: any = {};
 
-    cust.id = this.company.id;
+    cust.companyId = this.company.companyId;
     cust.name = this.company.name;
     cust.startDate = startDate;
     cust.businessType = this.company.businessType;
@@ -59,10 +76,11 @@ export class CompanyComponent implements OnInit {
     cust.phone = this.company.phone;
     cust.address = this.company.address;
     cust.employer = {};
-    cust.employer.id = this.company.employer.userId;
-
+    cust.employer.id = this.authService.authModel.user.userId;
+    this.authService.authModel.user.company.push(cust);
+    this.company = new Company();
     this.httpClient
-      .postToServer("company", cust)
+      .postToServer("employer", this.authService.authModel.user)
       .subscribe(data => console.log(data), err => console.log(err));
   }
 }
