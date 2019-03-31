@@ -34,4 +34,14 @@ import {
       var validationCollection = [];
       validationCollection.push(Validators.required);
     }
+
+    public getData() : any{
+      const data: any = {};
+      data.id = this.id;
+      data.city = this.city;
+      data.state = this.state;
+      data.street = this.street;
+      data.zipCode = this.zipCode;
+      return data;
+    }
   }

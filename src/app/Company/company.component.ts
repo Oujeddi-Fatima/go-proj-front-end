@@ -59,7 +59,7 @@ export class CompanyComponent implements OnInit {
     cust.phone = this.company.phone;
     cust.address = this.company.address;
     cust.employer = {};
-    cust.employer.id = this.company.employer.id;
+    cust.employer.id = this.company.employer.userId;
 
     this.httpClient
       .postToServer("company", cust)

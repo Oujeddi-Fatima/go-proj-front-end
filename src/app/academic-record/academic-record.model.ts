@@ -4,25 +4,25 @@ import {
   FormControl,
   Validators,
   FormBuilder
-} from '@angular/forms';
+} from "@angular/forms";
 
 export class AcademicRecord {
-  id:string="";
+  id: string = "";
   school: String = "";
   degree: String = "";
-  enrollmentDate: String = "";
-  completionDate: String = "";
-  major:string="";
+  enrollmentDate: any = "";
+  completionDate: any = "";
+  major: string = "";
   gpa: String = "";
 
   formGroup: FormGroup = null;
-    constructor() {
-      var _builder = new FormBuilder();
-      this.formGroup = _builder.group({});
+  constructor() {
+    var _builder = new FormBuilder();
+    this.formGroup = _builder.group({});
 
-      this.formGroup.addControl(
-        "",//field name
-        new FormControl("", Validators.required)
-      );
-    }
+    this.formGroup.addControl(
+      "", //field name
+      new FormControl("", Validators.required)
+    );
+  }
 }

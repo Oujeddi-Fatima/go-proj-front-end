@@ -8,12 +8,12 @@ import {
 import { Address } from "../address/address.model";
 
 export class User {
-  id: String;
+  userId: String;
   firstName: String = "";
   lastName: String = "";
   email: String = "";
   phoneNumber: String = "";
-  dateOfBirth: string = "";
+  dateOfBirth: any = "";
   address: Address = new Address();
 
   formGroup: FormGroup = null;
@@ -35,5 +35,21 @@ export class User {
     );
     var validationCollection = [];
     validationCollection.push(Validators.required);
+  }
+
+  public getData() {
+    const cust: any = {};
+    cust.firstName = this.firstName;
+    cust.lastName = this.lastName;
+    cust.email = this.email;
+    cust.phoneNumber = this.phoneNumber;
+    cust.dateOfBirth = this.dateOfBirth.year
+      ? this.dateOfBirth.year
+      : "" + "-" + this.dateOfBirth.month
+        ? this.dateOfBirth.month
+        : "" + "-" + this.dateOfBirth.day ? this.dateOfBirth.day : "";
+    cust.userId = this.userId;
+    cust.address = this.address.getData();
+    return cust;
   }
 }

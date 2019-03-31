@@ -10,22 +10,18 @@ import { User } from "../account/account.model";
 import { Company } from "../company/company.model";
 import { Skill } from "../skill/skill.model";
 import { Question } from "../question/question.model";
+import { RecJobPost } from "../rec-job-posts/rec-job-posts.model";
+import { Resume } from "New folder/go-proj-front-end/src/app/resume/resume.model";
 
-export class RecJobPost {
+export class RecApplication {
   id: string = "";
-  title: String = "";
+  submitedDate: String = "";
   level: String = "";
-  description: String = "";
-  requirement: String = "";
-  requiredQalification: String = "";
-  postDate: any = Date.now();
-  closeDate: any = "";
-  estimatedSalary: String = "";
-  address: Address = new Address();
-  employer: User = new User();
-  company: Company = new Company();
-  skill: Array<Skill> = new Array<Skill>();
-  questions: Array<Question> = new Array<Question>();
+  score: String = "";
+  jobPost: RecJobPost = new RecJobPost();
+  resume: Resume = new Resume();
+  answers: Array<Question> = new Array<Question>();
+  status: string = "";
 
   formGroup: FormGroup = null;
   constructor() {

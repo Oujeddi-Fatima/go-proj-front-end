@@ -8,8 +8,8 @@ import {
 
 export class WorkExperience {
   id:string="";
-  startDate: string = "";
-  finishDate: string = "";
+  startDate: any = "";
+  finishDate: any = "";
   isCurrent: boolean = false;
   title: string = "";
   company: string = "";

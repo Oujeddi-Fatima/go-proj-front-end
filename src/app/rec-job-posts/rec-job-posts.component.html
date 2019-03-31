@@ -51,14 +51,23 @@
           </div>
           <div class="form-group row">
             <div class="col">
-              <app-skill (addSkill)="addSkill($event)"></app-skill>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col">
               <app-question (addQuestions)="addQuestions($event)"></app-question>
             </div>
           </div>
+          <div *ngFor="let skill of recJobPost.skill" class="form card-body">
+              <app-resume-card [editable]="true" [titles]="skillStructure.titles" [attributes]="skillStructure.attributes"
+                [content]="skill" (delete)="deleteSkill($event)">
+              </app-resume-card>
+            </div>
+          <div class="form-group row">
+              <div class="col"></div>
+              <div class=" col-8">
+                <app-skill (addSkill)="addSkill($event)" [skillAdded]="eventsSubject.asObservable()"></app-skill>
+              </div>
+              <div class="col-2">
+                <button class="btn btn-grey btn-rounded" (click)="emitEventToChild('skill')" type="button">Add</button>
+              </div>
+            </div>
           <div class="form-group row">
             <div class="col-4"></div>
             <app-address (addAddress)="addAddress($event)"></app-address>

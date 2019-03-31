@@ -23,6 +23,7 @@ export class Resume {
   workExperiences: Array<WorkExperience> = new Array<WorkExperience>();
   skills: Array<Skill> = new Array<Skill>();
   formGroup: FormGroup = null;
+
   constructor() {
     var _builder = new FormBuilder();
     this.formGroup = _builder.group({});

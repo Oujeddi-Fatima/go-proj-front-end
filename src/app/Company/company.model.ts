@@ -15,7 +15,7 @@ export class Company {
   primeObjective: string = "";
   vision: string = "";
   mission: string = "";
-  startDate: string = "";
+  startDate: any = "";
   fax: string = "";
   businessType: string = "";
   phone: Array<string> = new Array<string>();
@@ -32,5 +32,28 @@ export class Company {
       "", //field name
       new FormControl("", Validators.required)
     );
+  }
+
+  public getData() {
+    const cust: any = {};
+    cust.id = this.id;
+    cust.name = this.name;
+    cust.startDate = this.startDate.year
+      ? this.startDate.year
+      : "" + "-" + this.startDate.month
+        ? this.startDate.month
+        : "" + "-" + this.startDate.day ? this.startDate.day : "";
+    cust.businessType = this.businessType;
+    cust.primeObjective = this.primeObjective;
+    cust.mission = this.mission;
+    cust.vision = this.vision;
+    cust.infoNumber = this.infoNumber;
+    cust.contacts = this.contacts;
+    cust.fax = this.fax;
+    cust.phone = this.phone;
+    cust.address = this.address.getData();
+    cust.employer = {};
+    cust.employer.userId = this.employer.userId;
+    return cust;
   }
 }

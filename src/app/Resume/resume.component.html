@@ -8,53 +8,100 @@
         <div class="form card-body">
           <div class="form-group row">
             <label class="col-3" for="resumeTitle">Resume Title</label>
-            <input class="col form-control" id="resumeTitle" type="text" formControlName="title" [(ngModel)]="resume.title">
+            <input class="col form-control" id="resumeTitle" type="text" formControlName="title"
+              [(ngModel)]="resume.title">
           </div>
           <div class="form-group row">
-            <label class="col-3" for="resumeDesc"> Description </label>
-            <textarea class="col form-control" id="resumeDesc" type="text" formControlName="description" [(ngModel)]="resume.description"
-              rows="3"></textarea>
+            <label class="col-3" for="resumeDesc">Description</label>
+            <textarea class="col form-control" id="resumeDesc" type="text" formControlName="description"
+              [(ngModel)]="resume.description" rows="3"></textarea>
           </div>
         </div>
       </div>
       <div id="workExperience" class="form-group">
         <h4 id="workExperienceHeading" class="card card-header">
-          Work Experience
+          <div>
+            <span>Work Experience</span>
+            <input type="button" class="btn btn-lg btn-link " (click)="emitEventToChild('workExperience')"
+              value="Add +">
+          </div>
         </h4>
+        <div *ngFor="let wrkExp of resume.workExperiences" class="form card-body">
+          <app-resume-card [editable]="true" [titles]="workExperienceStructure.titles"
+            [attributes]="workExperienceStructure.attributes" [content]="wrkExp"
+            (delete)="deleteWorkExperience($event)">
+          </app-resume-card>
+        </div>
         <div class="form card-body">
-          <app-work-experience (addWorkExperience)="addWorkExperience($event)"></app-work-experience>
+          <app-work-experience (addWorkExperience)="addWorkExperience($event)"
+            [workExperienceAdded]="eventsSubject.asObservable()"></app-work-experience>
         </div>
       </div>
       <div id="academicRecord" class="form-group">
         <h4 id="academicRecordHeading" class="card card-header">
-          Academic Record
+          <div>
+            <span>Academic Record</span>
+            <input type="button" class="btn btn-lg btn-link " (click)="emitEventToChild('academicRecord')"
+              value="Add +">
+          </div>
         </h4>
+        <div *ngFor="let acRec of resume.academicRecords" class="form card-body">
+          <app-resume-card [editable]="true" [titles]="academicRecordStructure.titles"
+            [attributes]="academicRecordStructure.attributes" [content]="acRec" (delete)="deleteAcademicRecord($event)">
+          </app-resume-card>
+        </div>
         <div class="form card-body">
-          <app-academic-record (addAcademicRecord)="addAcademicRecord($event)"></app-academic-record>
+          <app-academic-record (addAcademicRecord)="addAcademicRecord($event)"
+            [academicRecordAdded]="eventsSubject.asObservable()"></app-academic-record>
         </div>
       </div>
       <div id="certification" class="form-group">
         <h4 id="certificationHeading" class="card card-header">
-          Certification
+          <div>
+            <span>Certification</span>
+            <input type="button" class="btn btn-lg btn-link " (click)="emitEventToChild('certification')" value="Add +">
+          </div>
         </h4>
+        <div *ngFor="let cert of resume.certifications" class="form card-body">
+          <app-resume-card [editable]="true" [titles]="certificationStructure.titles"
+            [attributes]="certificationStructure.attributes" [content]="cert" (delete)="deleteCertification($event)">
+          </app-resume-card>
+        </div>
         <div class="form card-body">
-          <app-certification (addCertification)="addCertification($event)"></app-certification>
+          <app-certification (addCertification)="addCertification($event)"
+            [certificationAdded]="eventsSubject.asObservable()"></app-certification>
         </div>
       </div>
       <div id="project" class="form-group">
         <h4 id="projectHeading" class="card card-header">
-          Project
+          <div>
+            <span>Project</span>
+            <input type="button" class="btn btn-lg btn-link " (click)="emitEventToChild('project')" value="Add +">
+          </div>
         </h4>
+        <div *ngFor="let proj of resume.projects" class="form card-body">
+          <app-resume-card [editable]="true" [titles]="projectStructure.titles"
+            [attributes]="projectStructure.attributes" [content]="proj" (delete)="deleteProjects($event)">
+          </app-resume-card>
+        </div>
         <div class="form card-body">
-          <app-project (addProject)="addProject($event)"></app-project>
+          <app-project (addProject)="addProject($event)" [projectAdded]="eventsSubject.asObservable()"></app-project>
         </div>
       </div>
       <div id="project" class="form-group">
-        <h4 id="skillHeading" class="card card-header">
-          Skill
+        <h4 id="skillHeading" class="card card-header justify-content align-content">
+          <div>
+            <span>Skill</span>
+            <input type="button" class="btn btn-lg btn-link " (click)="emitEventToChild('skill')" value="Add +">
+          </div>
         </h4>
+        <div *ngFor="let skill of resume.skills" class="form card-body">
+          <app-resume-card [editable]="true" [titles]="skillStructure.titles" [attributes]="skillStructure.attributes"
+            [content]="skill" (delete)="deleteSkill($event)">
+          </app-resume-card>
+        </div>
         <div class="form card-body">
-          <app-skill (addSkill)="addSkill($event)"></app-skill>
+          <app-skill (addSkill)="addSkill($event)" [skillAdded]="eventsSubject.asObservable()"></app-skill>
         </div>
       </div>
     </div>

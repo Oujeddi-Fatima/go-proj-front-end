@@ -4,7 +4,16 @@
     <p class="mb-0">{{date}}</p>
   </div>
   <div class="card-body card-body-cascade text-center rgba-white-light">
-    <p class="card-text mb-0">{{content}}</p>
+    <div *ngIf="isText;else isNotText">
+      content here ...
+    </div>
+    <ng-template #isNotText>
+      <div *ngFor="let attribute of attributes; let i=index">
+        <p class="card-text mb-0">
+          {{titles[i]}} : {{content[attribute]}}
+        </p>
+      </div>
+    </ng-template>
     <a href="{{link}}" class="orange-text d-flex flex-row-reverse p-2">
       <h5 class="waves-effect waves-light">Read more <i class="fa fa-cloud-download"></i></h5>
     </a>

@@ -15,11 +15,10 @@ export class AccountComponent implements OnInit {
   userId: String = "";
   constructor(
     private authService: AuthenticationService,
-    _injector: Injector,
     private httpClient: HttpClientService,
     private ngbDateParserFormatter: NgbDateParserFormatter
   ) {
-    this.userId = authService.authModel.userId;
+    this.userId = this.authService.authModel.user.userId;
     this.getUserInfo();
   }
   user: User = new User();
@@ -39,13 +38,13 @@ export class AccountComponent implements OnInit {
   postToServer() {
     let ngbDate = this.registeredUser.formGroup.controls["dateOfBirth"].value;
     let dateOfBirth = this.ngbDateParserFormatter.format(ngbDate);
-    const cust: any = {};
+    const cust: any = this.authService.authModel.user;
     cust.firstName = this.registeredUser.firstName;
     cust.lastName = this.registeredUser.lastName;
     cust.email = this.registeredUser.email;
     cust.phoneNumber = this.registeredUser.phoneNumber;
     cust.dateOfBirth = dateOfBirth;
-    cust.id = this.registeredUser.id;
+    cust.id = this.registeredUser.userId;
     cust.address = this.registeredUser.address;
     this.httpClient
       .postToServer("user", cust)
@@ -63,7 +62,7 @@ export class AccountComponent implements OnInit {
         this.user.lastName = data.lastName;
         this.user.phoneNumber = data.phoneNumber;
         this.user.address = data.address;
-        this.user.id = data.id;
+        this.user.userId = data.userId;
       },
       err => console.log(err)
     );

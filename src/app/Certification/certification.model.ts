@@ -9,8 +9,8 @@ import {
 export class Certification {
   id:string="";
   title: String = "";
-  completionDate: String = "";
-  expirationDate: String = "";
+  completionDate: any = "";
+  expirationDate: any = "";
   description: String = "";
   link:string="";
   

@@ -1,0 +1,10 @@
+<div class="card card-cascade wider">
+     <div class="card-body card-body-cascade text-left rgba-white-light">
+       <button *ngIf="editable" type="button" class="btn btn-link float-right" (click)="deleteContent()">Remove</button>
+        <div *ngFor="let attribute of attributes; let i=index">
+          <p class="mb-0">
+            {{titles[i]}} : {{content[attribute]}}
+          </p>
+        </div>
+        </div>
+  </div>

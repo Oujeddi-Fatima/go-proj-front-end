@@ -17,4 +17,12 @@ export class HttpClientService {
   getFromServer(link: string) {
     return this.http.get(baseUrl.concat(link));
   }
+
+  getFromServerHref(link: string) {
+    return this.http.get(link);
+  }
+
+  getFromServerQueryParam(link: string, params: any) {
+    return this.http.get(baseUrl.concat(link), { params: params });
+  }
 }

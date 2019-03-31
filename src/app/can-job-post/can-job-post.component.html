@@ -1,0 +1,54 @@
+<form class="text-center border border-light p-5" [formGroup]="recJobPost.formGroup">
+  <div class="form-group row">
+    <div class="col-8">
+      <div id="intoduction" class="form-group">
+        <div class="form card-body">
+          <div class="form-group row">
+            <label class="col-3" for="recJobPostTitle">Job Title</label>
+            <span class="col " id="recJobPostTitle">{{recJobPost.Title}}</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="infoNumber"> Level</label>
+            <span class="col " id="infoNumber">{{recJobPost.level}}</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="primeObjective"> Description</label>
+            <span class="col " id="primeObjective" >{{recJobPost.description}}</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="vision"> Requirements</label>
+            <span class="col " id="vision"  >{{recJobPost.requirement}}</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="mission"> Required Qualifications</label>
+            <span class="col " id="mission"  >{{recJobPost.requiredQalification}}</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="sd"> Open Untill</label>
+            <span class="" id="sd">{{recJobPost.closeDate}}</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="fax"> Estimated Salary</label>
+            <span class="col " id="fax" >{{recJobPost.estimatedSalary}}</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="fax"> Company Name</label>
+            <span class="col " id="fax">{{recJobPost.company.name}}</span>
+          </div>
+          <div class="form-group row" *ngFor="let question of recJobPost.questions; let i = index">
+            <label class="col-3" for="fax"> Question {{i+1}}</label>
+            <span class="col-3 " id="fax">{{question.question}}</span>
+            <input class="form-control col">
+          </div>
+          <div class="form-group row" *ngFor="let skill of recJobPost.skills; let i = index">
+            <span class="col " id="fax">{{skill.skill}}</span>
+          </div>
+          <div class="form-group row">
+            <label class="col-3" for="fax"> Location</label>
+            {{recJobPost.address.city}}, {{recJobPost.address.state}} 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

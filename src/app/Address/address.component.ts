@@ -1,20 +1,32 @@
-import { Component, OnInit, Output, EventEmitter, Input} from "@angular/core";
-import { Address } from './address.model';
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { Address } from "./address.model";
 
 @Component({
-  selector: 'app-address',
-  templateUrl: './address.component.html'
+  selector: "app-address",
+  templateUrl: "./address.component.html"
 })
 export class AddressComponent implements OnInit {
   @Output() addAddress: EventEmitter<any> = new EventEmitter();
-  @Input()
-  address:Address = new Address();
-  constructor() { }
+  private _address: Address = new Address();
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+  ngAfterContentInit() {}
+
+  @Input()
+  set address(address: Address) {
+    if (address == null || address == undefined) {
+      this._address = new Address();
+    } else {
+      this._address = address;
+    }
   }
 
-  add(){
+  get address(): Address {
+    return this._address;
+  }
+
+  add() {
     const data: any = {};
     data.id = this.address.id;
     data.city = this.address.city;
