@@ -9,6 +9,7 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 import { FormGroup } from "@angular/forms";
 import { CompanyStructure } from "./company.structure";
+var _ = require('underscore');
 @Component({
   selector: "app-company",
   templateUrl: "./company.component.html"
@@ -24,9 +25,15 @@ export class CompanyComponent implements OnInit {
     private httpClient: HttpClientService,
     private ngbDateParserFormatter: NgbDateParserFormatter
   ) {
+    this.getCompaniesforEmployer();
+    this.company.employer.userId = this.authService.authModel.user.userId;
+  }
+
+  getCompaniesforEmployer() {
     this.httpClient
       .getFromServerHref(this.authService.authModel.user._links.companies.href)
       .subscribe((companies: Array<Company>) => {
+        this.authService.authModel.user.company = JSON.parse(JSON.stringify((companies)));
         companies.forEach(company => {
           if (company != null) {
             const formGroup: FormGroup = this.company.formGroup;
@@ -35,7 +42,6 @@ export class CompanyComponent implements OnInit {
         });
         this.companies = companies;
       });
-    this.company.employer.userId = this.authService.authModel.user.userId;
   }
 
   ngOnInit() {}
@@ -81,6 +87,15 @@ export class CompanyComponent implements OnInit {
     this.company = new Company();
     this.httpClient
       .postToServer("employer", this.authService.authModel.user)
-      .subscribe(data => console.log(data), err => console.log(err));
+      .subscribe(
+        data => {
+          console.log(data);
+          this.getCompaniesforEmployer();
+        },
+        err => {
+          console.log(err);
+          this.getCompaniesforEmployer();
+        }
+      );
   }
 }

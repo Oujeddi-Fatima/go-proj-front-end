@@ -9,7 +9,7 @@
                 <div class="form-group row">
                   <label class="col-3" for="recJobPostTitle">Job Title</label>
                   <input class="col form-control" id="recJobPostTitle" type="text" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="recJobPost.Title">
+                    [(ngModel)]="recJobPost.title">
                 </div>
                 <div class="form-group row">
                   <label class="col-3" for="infoNumber"> Level</label>
@@ -79,18 +79,18 @@
 
               </div>
             </div>
-            <button type="button" class="btn btn-primary float-right" (click)="save()">Save</button>
+            <button type="button" class="btn btn-primary float-right" (click)="save()">Post Job</button>
           </div>
         </div>
       </form>
     </ng-template>
   </ngb-tab>
-  <ngb-tab id="tab-selectbyid2" title="Show Saved">
+  <ngb-tab id="tab-selectbyid2" title="Show Saved" (click)="getJobPostsforEmployer()">
     <ng-template ngbTabContent>
       <div class="row">
-        <div *ngFor="let company of companies" class="col-4">
-          <app-card [isText]="false" [titles]="companyStructure.titles" [attributes]="companyStructure.attributes"
-            [content]="company" [link]="">
+        <div *ngFor="let recJobPost of recJobPosts" class="col-4">
+          <app-card [isText]="false" [titles]="recJobPostStructure.titles" [attributes]="recJobPostStructure.attributes"
+            [content]="recJobPost" [link]="">
           </app-card>
         </div>
       </div>

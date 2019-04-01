@@ -1,4 +1,4 @@
-<div class="body login-img3-body">
+<div class="back-image" style="height:100%; width:100%; margin:0;padding:0; position: fixed">
   <form class="login-form" [formGroup]="signUp.formGroup">
     <div class="login-wrap">
       <p class="login-img"><i class="icon_profile"></i></p>
@@ -30,6 +30,7 @@
       </div>
       <button class="btn btn-primary btn-lg btn-block" (click)="signup()" type="submit"
         [disabled]="!(signUp.formGroup.valid)">Register</button>
+      <a class="btn btn-info btn-lg btn-block" [routerLink]="['/login']">Already have an account</a>
     </div>
   </form>
   <div class="text-right">

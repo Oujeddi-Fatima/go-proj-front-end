@@ -9,8 +9,8 @@ import { formatDate } from "@angular/common";
 import { Subject } from "rxjs";
 import { SkillStructure } from "../skill/skill.structure";
 import { RecJobPostsStructure } from "./rec-job-posts.structure";
-import { AuthenticationService } from '../authentication.service';
-import { FormGroup } from '@angular/forms';
+import { AuthenticationService } from "../authentication.service";
+import { FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-rec-job-posts",
@@ -32,18 +32,23 @@ export class RecJobPostsComponent implements OnInit {
     private httpClient: HttpClientService,
     private ngbDateParserFormatter: NgbDateParserFormatter
   ) {
+    this.getJobPostsforEmployer();
+    this.recJobPost.employer.userId = this.authService.authModel.user.userId;
+  }
+
+  getJobPostsforEmployer() {
     this.httpClient
-      .getFromServerHref(this.authService.authModel.user._links.companies.href)
-      .subscribe((companies: Array<RecJobPost>) => {
-        companies.forEach(company => {
-          if (company != null) {
+      .getFromServerHref(this.authService.authModel.user._links.jobPosts.href)
+      .subscribe((jobPosts: Array<RecJobPost>) => {
+        this.authService.authModel.user.jobPosts = JSON.parse(JSON.stringify(jobPosts));
+        jobPosts.forEach(jobPost => {
+          if (jobPost != null) {
             const formGroup: FormGroup = this.recJobPost.formGroup;
-            company.formGroup = formGroup;
+            jobPost.formGroup = formGroup;
           }
         });
-        this.recJobPosts = companies;
+        this.recJobPosts = jobPosts;
       });
-    this.recJobPost.employer.userId = this.authService.authModel.user.userId;
   }
 
   ngOnInit() {}
@@ -66,7 +71,7 @@ export class RecJobPostsComponent implements OnInit {
 
   save() {
     const data: any = {};
-    data.id = this.recJobPost.id;
+    data.jobPostId = this.recJobPost.jobPostId;
     data.title = this.recJobPost.title;
     data.level = this.recJobPost.level;
     data.description = this.recJobPost.description;
@@ -80,16 +85,26 @@ export class RecJobPostsComponent implements OnInit {
     data.address = this.recJobPost.address;
     data.employer = this.recJobPost.employer.getData();
     data.company = this.recJobPost.company.getData();
-    this.recJobPost.skill.map(skill => data.skill.push(skill.getJson()));
+    data.skill = [];
+    data.questions = [];
+    this.recJobPost.skill.map(skill => data.skill.push(skill));
     this.recJobPost.questions.map(question => data.questions.push(question));
     data.company.businessType = "InformationTechnology"; //TODO
-    this.httpClient.postToServer("jobpost", data).subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    data.employer = {};
+    data.employer.id = this.authService.authModel.user.userId;
+    this.authService.authModel.user.jobPosts.push(data);
+    this.recJobPost = new RecJobPost();
+    this.httpClient
+      .postToServer("employer", this.authService.authModel.user)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.getJobPostsforEmployer();
+        },
+        err => {
+          console.log(err);
+          this.getJobPostsforEmployer();
+        }
+      );
   }
 }

@@ -93,7 +93,7 @@
       </form>
     </ng-template>
   </ngb-tab>
-  <ngb-tab id="tab-selectbyid2" title="Show Saved">
+  <ngb-tab id="tab-selectbyid2" title="Show Saved" (click)="getCompaniesforEmployer()">
     <ng-template ngbTabContent>
       <div class="row">
         <div *ngFor="let company of companies" class="col-4">

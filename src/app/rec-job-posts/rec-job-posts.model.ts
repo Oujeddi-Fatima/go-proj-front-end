@@ -12,7 +12,7 @@ import { Skill } from "../skill/skill.model";
 import { Question } from "../question/question.model";
 
 export class RecJobPost {
-  id: string = "";
+  jobPostId: string = "";
   title: String = "";
   level: String = "";
   description: String = "";

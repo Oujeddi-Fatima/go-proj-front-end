@@ -1,15 +1,17 @@
-<div class="body login-img3-body">
-  <form class="login-form"  [formGroup]="authService.authModel.formGroup">
+<div class="back-image" style="height:100%; width:100%; margin:0;padding:0; position: fixed">
+  <form class="login-form" [formGroup]="authService.authModel.formGroup">
     <div class="login-wrap">
       <p class="login-img"><i class="icon_lock_alt"></i></p>
       <div class="input-group">
         <span class="input-group-addon"><i class="icon_profile"></i></span>
 
-        <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]=authService.authModel.username class="form-control" placeholder="Username" autofocus>
+        <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]=authService.authModel.username
+          class="form-control" placeholder="Username" autofocus>
       </div>
       <div class="input-group">
         <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-        <input type="password" [ngModelOptions]="{standalone: true}" [(ngModel)]=authService.authModel.password class="form-control" placeholder="Password">
+        <input type="password" [ngModelOptions]="{standalone: true}" [(ngModel)]=authService.authModel.password
+          class="form-control" placeholder="Password">
       </div>
       <!-- <label class="checkbox">
         <input type="checkbox" value="remember-me"> Remember me
