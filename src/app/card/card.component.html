@@ -1,21 +1,28 @@
 <div class="card card-cascade wider">
-  <div class="view view-cascade gradient-card-header deep-purple darken-4 text-center">
-    <h2 class="card-title mb-3">{{title}}</h2>
-    <p class="mb-0">{{date}}</p>
+  <div
+    class="view view-cascade gradient-card-header deep-purple darken-4 text-center"
+  >
+    <h2 class="card-title mb-3">{{ title }}</h2>
+    <p class="mb-0">{{ date }}</p>
   </div>
   <div class="card-body card-body-cascade text-center rgba-white-light">
-    <div *ngIf="isText;else isNotText">
-      content here ...
-    </div>
+    <div *ngIf="isText; else: isNotText">content here ...</div>
     <ng-template #isNotText>
-      <div *ngFor="let attribute of attributes; let i=index">
-        <p class="card-text mb-0">
-          {{titles[i]}} : {{content[attribute]}}
-        </p>
+      <div *ngFor="let attribute of attributes; let i = index">
+        <p class="card-text mb-0">{{ titles[i] }} : {{ content[attribute] }}</p>
       </div>
     </ng-template>
-    <a href="{{link}}" class="purple-text d-flex flex-row-reverse p-2">
-      <h5 class="waves-effect waves-light">Read more <i class="fa fa-cloud-download"></i></h5>
-    </a>
+    <!--
+      <a href="{{link}}" class="purple-text d-flex flex-row-reverse p-2">
+        <h5 class="waves-effect waves-light">Read more <i class="fa fa-cloud-download"></i></h5>
+      </a>
+    -->
+    <button
+      *ngIf="apply"
+      (click)="applyJob()"
+      class="btn btn-black float-right"
+    >
+      Apply
+    </button>
   </div>
 </div>

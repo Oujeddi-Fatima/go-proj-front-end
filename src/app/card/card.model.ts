@@ -5,4 +5,5 @@ export class Card {
   links: string[] = [];
   title: string = "";
   isText = false;
+  apply: boolean;
 }

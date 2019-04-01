@@ -5,23 +5,27 @@ import {
   Validators,
   FormBuilder
 } from "@angular/forms";
-import { User } from "../account/account.model";
 import { Address } from "../address/address.model";
+import { User } from "../account/account.model";
+import { Company } from "../company/company.model";
+import { Skill } from "../skill/skill.model";
+import { Question } from "../question/question.model";
 
 export class SearchJob {
-  companyId: string = "";
-  name: string = "";
-  infoNumber: string = "";
-  primeObjective: string = "";
-  vision: string = "";
-  mission: string = "";
-  startDate: any = "";
-  fax: string = "";
-  businessType: string = "";
-  phone: Array<string> = new Array<string>();
-  contacts: Array<string> = new Array<string>();
+  jobPostId: string = "";
+  title: String = "";
+  level: String = "";
+  description: String = "";
+  requirement: String = "";
+  requiredQalification: String = "";
+  postDate: any = Date.now();
+  closeDate: any = "";
+  estimatedSalary: String = "";
   address: Address = new Address();
   employer: User = new User();
+  company: Company = new Company();
+  skill: Array<Skill> = new Array<Skill>();
+  questions: Array<Question> = new Array<Question>();
 
   formGroup: FormGroup = null;
   constructor() {
@@ -29,33 +33,12 @@ export class SearchJob {
     this.formGroup = _builder.group({});
 
     this.formGroup.addControl(
-      "", //field name
+      "title",
       new FormControl("", Validators.required)
     );
-  }
-
-  public getData() {
-    const cust: any = {};
-    cust.companyId = this.companyId;
-    cust.name = this.name;
-    cust.startDate = this.startDate.year
-      ? this.startDate.year
-      : "" + "-" + this.startDate.month
-      ? this.startDate.month
-      : "" + "-" + this.startDate.day
-      ? this.startDate.day
-      : "";
-    cust.businessType = this.businessType;
-    cust.primeObjective = this.primeObjective;
-    cust.mission = this.mission;
-    cust.vision = this.vision;
-    cust.infoNumber = this.infoNumber;
-    cust.contacts = this.contacts;
-    cust.fax = this.fax;
-    cust.phone = this.phone;
-    cust.address = this.address.getData();
-    cust.employer = {};
-    cust.employer.userId = this.employer.userId;
-    return cust;
+    this.formGroup.addControl(
+      "description",
+      new FormControl("", Validators.required)
+    );
   }
 }

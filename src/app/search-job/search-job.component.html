@@ -1,5 +1,5 @@
 <ngb-tabset>
-  <ngb-tab id="tab-selectbyid2" title="Show Saved">
+  <ngb-tab id="tab-selectbyid2" title="Show Jobs">
     <ng-template ngbTabContent>
       <div class="row">
         <div *ngFor="let searchJob of jobs" class="col-4">
@@ -9,6 +9,8 @@
             [attributes]="searchJobStructure.attributes"
             [content]="searchJob"
             [link]=""
+            [apply]="true"
+            (applyEmitter)="apply($event)"
           >
           </app-card>
         </div>

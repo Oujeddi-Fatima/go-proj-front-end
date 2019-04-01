@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { AuthenticationService } from "../authentication.service";
 import { Card } from "./card.model";
 
@@ -8,13 +8,15 @@ import { Card } from "./card.model";
 })
 export class CardComponent implements OnInit {
   card: Card = new Card();
-  @Input() title: string ="";
-  @Input() titles: string[] = [] ;
-  @Input() attributes: string[] =  [] ;
+  @Input() title: string = "";
+  @Input() titles: string[] = [];
+  @Input() attributes: string[] = [];
   @Input() date: string = "";
   @Input() content: any = {};
   @Input() link: string = "";
   @Input() isText: boolean = false;
+  @Input() apply: boolean = false;
+  @Output() applyEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private authService: AuthenticationService) {}
 
@@ -24,6 +26,11 @@ export class CardComponent implements OnInit {
     this.card.attributes = this.attributes;
     this.card.content = this.content;
     this.card.isText = this.isText;
+    this.card.apply = this.apply;
     this.card.links.push(this.link);
+  }
+
+  applyJob() {
+    this.applyEmitter.emit(this.content);
   }
 }
