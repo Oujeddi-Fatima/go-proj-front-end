@@ -6,7 +6,7 @@ import {
 } from "@angular/router";
 import { authenticationModel } from "./authentication.model";
 import { HttpClientService } from "./http-client.service";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
@@ -14,7 +14,12 @@ import { HttpClient } from '@angular/common/http';
 export class AuthenticationService {
   redirectUrl: string = "/";
   authModel: authenticationModel = new authenticationModel();
-  constructor(private router: Router,private httpClient: HttpClient) {}
+  constructor(private router: Router, private httpClient: HttpClient) {}
+
+  signOut() {
+    this.authModel.isAuthenticated = false;
+    this.authModel = new authenticationModel();
+  }
 
   authenticate() {
     this.authModel.isAuthenticated = true;

@@ -9,6 +9,7 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 import { FormGroup } from "@angular/forms";
 import { CompanyStructure } from "./company.structure";
+
 @Component({
   selector: "app-company",
   templateUrl: "./company.component.html"
@@ -32,9 +33,7 @@ export class CompanyComponent implements OnInit {
     this.httpClient
       .getFromServerHref(this.authService.authModel.user._links.companies.href)
       .subscribe((companies: Array<Company>) => {
-        this.authService.authModel.user.company = JSON.parse(
-          JSON.stringify(companies)
-        );
+        this.authService.authModel.user.company = JSON.parse(JSON.stringify((companies)));
         companies.forEach(company => {
           if (company != null) {
             const formGroup: FormGroup = this.company.formGroup;

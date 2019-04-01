@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { AuthenticationService } from "../authentication.service";
 import { Card } from "./card.model";
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: "app-card",
@@ -16,7 +17,9 @@ export class CardComponent implements OnInit {
   @Input() link: string = "";
   @Input() isText: boolean = false;
   @Input() apply: boolean = false;
+  @Input() showApplication: boolean = false;
   @Output() applyEmitter: EventEmitter<any> = new EventEmitter<any>();
+  @Output() showApplicationEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private authService: AuthenticationService) {}
 
@@ -30,7 +33,15 @@ export class CardComponent implements OnInit {
     this.card.links.push(this.link);
   }
 
+  icontent(stg) {
+   return this.content.stg;
+  }
+
   applyJob() {
     this.applyEmitter.emit(this.content);
+  }
+
+  showApp() {
+    this.showApplicationEmitter.emit(this.content);
   }
 }

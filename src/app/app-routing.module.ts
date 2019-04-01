@@ -14,6 +14,8 @@ import { from } from "rxjs";
 import { SearchJobComponent } from "./search-job/search-job.component";
 import { EmployeeRoleGuard } from "./employee-role.guard";
 import { SignUpComponent } from "./sign-up/sign-up.component";
+import { SignOutComponent } from "./sign-out/sign-out.component";
+import { SubmittedApplicationComponent } from "./submitted-application/submitted-application.component";
 
 const homeRoutes: Routes = [
   {
@@ -50,12 +52,18 @@ const homeRoutes: Routes = [
     path: "job/search",
     component: SearchJobComponent,
     canActivate: [SecurityGuard]
+  },
+  {
+    path: "job/submitted",
+    component: SubmittedApplicationComponent,
+    canActivate: [SecurityGuard]
   }
 ];
 
 const landingRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignUpComponent },
+  { path: "signout", component: SignOutComponent },
   {
     path: "",
     component: LandingPageComponent,

@@ -1,7 +1,5 @@
 <div class="card card-cascade wider">
-  <div
-    class="view view-cascade gradient-card-header deep-purple darken-4 text-center"
-  >
+  <div class="view view-cascade gradient-card-header deep-purple darken-4 text-center">
     <h2 class="card-title mb-3">{{ title }}</h2>
     <p class="mb-0">{{ date }}</p>
   </div>
@@ -17,12 +15,11 @@
         <h5 class="waves-effect waves-light">Read more <i class="fa fa-cloud-download"></i></h5>
       </a>
     -->
-    <button
-      *ngIf="apply"
-      (click)="applyJob()"
-      class="btn btn-black float-right"
-    >
+    <button *ngIf="apply" (click)="applyJob()" class="btn btn-black float-right">
       Apply
+    </button>
+    <button *ngIf="showApplication" (click)="showApp()" class="btn btn-black float-right">
+      Show Applications
     </button>
   </div>
 </div>

@@ -1,0 +1,7 @@
+<div class="row">
+  <div *ngFor="let application of applications" class="col-3">
+    <app-card [isText]="false" [titles]="applicationStructure.titles" [attributes]="applicationStructure.attributes"
+      [content]="application" [link]="" >
+    </app-card>
+  </div>
+</div>

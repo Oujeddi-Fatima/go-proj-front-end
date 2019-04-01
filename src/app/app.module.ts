@@ -30,6 +30,8 @@ import { CanJobPostComponent } from "./can-job-post/can-job-post.component";
 import { ResumeCardComponent } from "./resume-card/resume-card.component";
 import { SearchJobComponent } from "./search-job/search-job.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
+import { SignOutComponent } from './sign-out/sign-out.component';
+import { SubmittedApplicationComponent } from './submitted-application/submitted-application.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { SignUpComponent } from "./sign-up/sign-up.component";
     CanJobPostComponent,
     ResumeCardComponent,
     SearchJobComponent,
-    SignUpComponent
+    SignUpComponent,
+    SignOutComponent,
+    SubmittedApplicationComponent
   ],
   imports: [
     BrowserModule,

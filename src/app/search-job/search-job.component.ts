@@ -10,6 +10,8 @@ import {
 import { FormGroup } from "@angular/forms";
 import { SearchJobStructure } from "./search-Job.structure";
 import { formatDate } from "@angular/common";
+import { RecJobPost } from '../rec-job-posts/rec-job-posts.model';
+import { Application } from './application.model';
 
 @Component({
   selector: "app-search-job",
@@ -28,39 +30,16 @@ export class SearchJobComponent implements OnInit {
   ) {
     this.httpClient
       .getFromServer("jobpost")
-      .subscribe((jobs: Array<SearchJob>) => {
-        jobs.forEach(SearchJob => {
-          if (SearchJob != null) {
-            const formGroup: FormGroup = this.searchJob.formGroup;
-            SearchJob.formGroup = formGroup;
-          }
-        });
+      .subscribe((jobs: Array<RecJobPost>) => {
         this.jobs = jobs;
       });
   }
-  apply(jobpost: SearchJob) {
-    const data: any = {};
-    data.jobPostId = jobpost.jobPostId;
-    data.title = jobpost.title;
-    data.level = jobpost.level;
-    data.description = jobpost.description;
-    data.requirement = jobpost.requirement;
-    data.requiredQalification = jobpost.requiredQalification;
-    data.postDate = formatDate(new Date(), "yyyy-MM-dd", "en");
-    data.closeDate = this.ngbDateParserFormatter.format(jobpost.closeDate);
-    data.estimatedSalary = jobpost.estimatedSalary;
-    data.address = jobpost.address;
-    //data.employer = jobpost.employer.getData();
-    //data.company = jobpost.company.getData();
-    data.skill = [];
-    data.questions = [];
-    jobpost.skill.map(skill => data.skill.push(skill));
-    jobpost.questions.map(question => data.questions.push(question));
-    data.company.businessType = "InformationTechnology"; //TODO
-    data.employer = {};
-    data.employer.id = this.authService.authModel.user.userId;
-    this.authService.authModel.user.jobPosts.push(data);
-    jobpost = new SearchJob();
+  apply(jobpost: RecJobPost) {
+
+    const data: Application = new Application;
+    data.jobPost = jobpost;
+    data.resume = this.authService.authModel.user.resume;
+    data.applicant = this.authService.authModel.user;
     this.httpClient
       .postToServer(
         "user/" + this.authService.authModel.user.userId + "/application",

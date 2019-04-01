@@ -1,1 +1,25 @@
-<app-can-job-post></app-can-job-post>
+<ngb-tabset #t="ngbTabset">
+    <ngb-tab id="tab-selectbyid1" title="JobPosts">
+        <ng-template ngbTabContent>
+            <div class="row">
+                <div *ngFor="let recJobPost of recJobPosts" class="col-4">
+                    <app-card [isText]="false" [titles]="recJobPostStructure.titles"
+                        [attributes]="recJobPostStructure.attributes" [content]="recJobPost" [link]=""
+                        [showApplication]="true" (showApplicationEmitter)="showApp($event)">
+                    </app-card>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-selectbyid2" title="Applications" [disabled]="!isShowApp">
+        <ng-template ngbTabContent>
+            <div class="row">
+                <div *ngFor="let application of applications" class="col-4">
+                    <app-card [isText]="false" [titles]="applictionStructure.titles"
+                        [attributes]="applictionStructure.attributes" [content]="application" [link]="">
+                    </app-card>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>
