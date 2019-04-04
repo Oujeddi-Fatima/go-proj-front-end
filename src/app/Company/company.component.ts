@@ -19,6 +19,7 @@ export class CompanyComponent implements OnInit {
   company: Company = new Company();
   contact: string = "";
   phone: string = "";
+  businessType :string="Select..."
   companyStructure: CompanyStructure = new CompanyStructure();
   constructor(
     private authService: AuthenticationService,
@@ -42,6 +43,11 @@ export class CompanyComponent implements OnInit {
         });
         this.companies = companies;
       });
+  }
+
+  setBusinessType(btv, bto) {
+    this.company.businessType = btv;
+    this.businessType = bto;
   }
 
   ngOnInit() {}

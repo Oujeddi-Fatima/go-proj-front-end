@@ -26,11 +26,13 @@
     <div class="col-2">
       some content
     </div>
-    <div class="card card-cascade wider bg-transparent col-8 transparent">
-      <div class="breadcrumb view view-cascade gradient-card-header bg-transparent text-left">
-        <p class="card-title mb-3">Home / Dashboard</p>
-      </div>
-      <div class="card-body card-body-cascade text-center bg-transparent">
+    <div class="card card-cascade wider bg-transparent col-8 transparent" id="landing-page-content">
+      <nav aria-label="breadcrumb gradient-card-header bg-transparent">
+        <ol class="breadcrumb gradient-card-header bg-transparent">
+          <li class="breadcrumb-item gradient-card-header bg-transparent" aria-current="page">{{breadcrumb}}</li>
+        </ol>
+      </nav>
+      <div class="card-body card-body-cascade text-center bg-transparent" id="landing-page-content">
         <router-outlet></router-outlet>
       </div>
     </div>

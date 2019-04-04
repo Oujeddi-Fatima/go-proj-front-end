@@ -10,8 +10,8 @@ const baseUrl: string = "http://localhost:8080/";
 export class HttpClientService {
   constructor(authService: AuthenticationService, public http: HttpClient) {}
 
-  postToServer(link: string, data: any) {
-    return this.http.post(baseUrl.concat(link), data);
+  postToServer(link: string, data: any, options?:any) {
+    return this.http.post(baseUrl.concat(link), data, options);
   }
 
   getFromServer(link: string) {

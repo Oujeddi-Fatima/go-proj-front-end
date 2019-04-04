@@ -8,6 +8,7 @@ import { NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
 })
 export class AcademicRecordComponent implements OnInit {
   academicRecord: AcademicRecord = new AcademicRecord();
+  degree: string = "Select...";
   @Output() addAcademicRecord: EventEmitter<any> = new EventEmitter();
   constructor(private ngbDateParserFormatter: NgbDateParserFormatter) {}
 
@@ -23,6 +24,11 @@ export class AcademicRecordComponent implements OnInit {
   ngOnDestroy() {
     if(this.eventsSubscription)
     this.eventsSubscription.unsubscribe();
+  }
+
+  setDegree(dv, dt) {
+    this.degree = dt;
+    this.academicRecord.degree = dv;
   }
 
   add() {

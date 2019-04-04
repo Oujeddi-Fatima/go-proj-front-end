@@ -9,72 +9,80 @@
                 <div class="form-group row">
                   <label class="col-3" for="companyTitle">company Name</label>
                   <input class="col form-control" id="companyTitle" type="text" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="company.name">
+                         [(ngModel)]="company.name">
                 </div>
                 <div class="form-group row">
                   <label class="col-3" for="infoNumber"> Information Number</label>
                   <input class="col form-control" id="infoNumber" type="text" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="company.infoNumber">
+                         [(ngModel)]="company.infoNumber">
                 </div>
                 <div class="form-group row">
                   <label class="col-3" for="primeObjective"> Prime Objectives</label>
                   <textarea class="col form-control" id="primeObjective" type="text"
-                    [ngModelOptions]="{standalone: true}" [(ngModel)]="company.primeObjective" rows="3"></textarea>
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="company.primeObjective" rows="3"></textarea>
                 </div>
                 <div class="form-group row">
                   <label class="col-3" for="vision"> Visions</label>
                   <textarea class="col form-control" id="vision" type="text" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="company.vision" rows="3"></textarea>
+                            [(ngModel)]="company.vision" rows="3"></textarea>
                 </div>
                 <div class="form-group row">
                   <label class="col-3" for="mission"> Missions</label>
                   <textarea class="col form-control" id="mission" type="text" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="company.mission" rows="3"></textarea>
+                            [(ngModel)]="company.mission" rows="3"></textarea>
                 </div>
                 <div class="form-group row">
                   <label class="col-3" for="sd"> Start Date</label>
                   <div class="btn-group input-group col" id="sd">
                     <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="company.startDate" ngbDatepicker
-                      [dayTemplate]="customDay" [markDisabled]="isDisabled" #sd="ngbDatepicker"
-                      [ngModelOptions]="{standalone: true}">
+                           [dayTemplate]="customDay" [markDisabled]="isDisabled" #sd="ngbDatepicker"
+                           [ngModelOptions]="{standalone: true}">
                     <div class="input-group-btn">
                       <button class="btn calendar btn-grey btn-rounded" (click)="sd.toggle()" type="button"></button>
+                    </div>
+                  </div>
+                  <label class="col-3" for="businessType"> Business Type</label>
+                  <div ngbDropdown #myDrop="ngbDropdown">
+                    <button class="col form-control" id="businessType" ngbDropdownAnchor (focus)="myDrop.open()">
+                      {{businessType}}</button>
+                    <div ngbDropdownMenu aria-labelledby="businessType">
+                      <button ngbDropdownItem (click)="setBusinessType('InformationTechnology',$event.target.textContent)">Information Technology</button>
+                      <button ngbDropdownItem (click)="setBusinessType('Education',$event.target.textContent)">Education</button>
+                      <button ngbDropdownItem (click)="setBusinessType('Finance',$event.target.textContent)">Finance</button>
+                      <button ngbDropdownItem (click)="setBusinessType('RealEstate',$event.target.textContent)">Real Estate</button>
+                      <button ngbDropdownItem (click)="setBusinessType('Others',$event.target.textContent)">Others</button>
                     </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-3" for="fax"> Fax</label>
                   <input class="col form-control" id="fax" type="text" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="company.fax">
+                         [(ngModel)]="company.fax">
                 </div>
                 <div *ngFor="let p of  company.phone;  let j = index" class="form-group row">
-                  <label class="col-3" for="`phone{{j}`">contact {{j}} : </label>
-                      <span class=" col table" id="`phone{{j}}`"> {{p}}</span>
-                </div>
+                  <label class="col-3" for="phone{{j
+                      }}">phone {{j + 1}} : </label>
+                      <span class=" col table" id="phone{{j}}"> {{p}}</span>
+</div>
                 <div class="form-group row">
                   <label class="col-3" for="phone"> Phone</label>
                   <div class="btn-group input-group col">
                     <input class="col form-control" id="phone" type="text" [ngModelOptions]="{standalone: true}"
-                      [(ngModel)]="phone">
+                           [(ngModel)]="phone">
                     <div class="input-group-btn">
                       <button class="btn btn-grey btn-rounded" (click)="addPhone()" type="button">add</button>
                     </div>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label class="col-3" for="businessType"> Business Type</label>
-                  <input class="col form-control" id="businessType" type="text" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="company.businessType">
-                </div>
                 <div *ngFor="let c of  company.contacts;  let i = index" class="form-group row">
-                  <label class="col-3" for="`contact{{i}}`">contact {{i}} : </label>
-                  <span class="col table" id="`contact{{i}}`"> {{c}}</span>
+                  <label class="col-3" for="contact{{i}}">contact {{i + 1}} : </label>
+                  <span class="col table" id="contact{{i}}"> {{c}}</span>
                 </div>
                 <div class="form-group row">
                   <label class="col-3" for="contacts">Contacts</label>
                   <div class="btn-group input-group col">
                     <textarea class="form-control" id="contacts" type="text" [ngModelOptions]="{standalone: true}"
-                      [(ngModel)]="contact" rows="3"></textarea>
+                              [(ngModel)]="contact" rows="3"></textarea>
                     <div class="input-group-btn">
                       <button class="btn btn-grey btn-rounded" (click)="addContact()" type="button">add</button>
                     </div>
@@ -98,7 +106,7 @@
       <div class="row">
         <div *ngFor="let company of companies" class="col-4">
           <app-card [isText]="false" [titles]="companyStructure.titles" [attributes]="companyStructure.attributes"
-            [content]="company" [link]="">
+                    [content]="company" [link]="">
           </app-card>
         </div>
       </div>

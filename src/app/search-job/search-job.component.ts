@@ -12,6 +12,8 @@ import { SearchJobStructure } from "./search-Job.structure";
 import { formatDate } from "@angular/common";
 import { RecJobPost } from '../rec-job-posts/rec-job-posts.model';
 import { Application } from './application.model';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: "app-search-job",
@@ -22,20 +24,17 @@ export class SearchJobComponent implements OnInit {
   searchJob: SearchJob = new SearchJob();
   Contact: string = "";
   uri: string = "application";
+  searchKey: any = "";
   searchJobStructure: SearchJobStructure = new SearchJobStructure();
   constructor(
     private authService: AuthenticationService,
     private httpClient: HttpClientService,
-    private ngbDateParserFormatter: NgbDateParserFormatter
+    private ngbDateParserFormatter: NgbDateParserFormatter,
+    private router: Router
   ) {
-    this.httpClient
-      .getFromServer("jobpost")
-      .subscribe((jobs: Array<RecJobPost>) => {
-        this.jobs = jobs;
-      });
+    this.searchJobs();
   }
   apply(jobpost: RecJobPost) {
-
     const data: Application = new Application;
     data.jobPost = jobpost;
     data.resume = this.authService.authModel.user.resume;
@@ -53,5 +52,31 @@ export class SearchJobComponent implements OnInit {
       );
   }
 
-  ngOnInit() {}
+  searchJobs(searchKey?) {
+    if (searchKey || searchKey == "") {
+      this.httpClient.getFromServerQueryParam("skill", searchKey).subscribe((skillSet: Array<any>) => {
+
+        this.httpClient.postToServer("jobpost/byskill", skillSet).subscribe((jobs) => {
+          console.log(jobs);
+         // this.jobs = jobs;
+        });
+
+      });
+    } else {
+      this.httpClient.getFromServer("jobpost").subscribe((jobs: Array<RecJobPost>) => {
+        this.jobs = jobs;
+      });
+    }
+    
+  }
+
+  ngOnInit() {
+    this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map(e => { return e.url; })).subscribe(
+        (e) => {
+          this.searchKey = this.router.getCurrentNavigation().extras.state;
+          this.searchJobs(this.searchKey);
+        }
+    );
+  }
 }

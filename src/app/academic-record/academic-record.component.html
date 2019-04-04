@@ -18,10 +18,21 @@
 </div>
 
 <div class="form-group row">
-    <label class="col-3" for="degree">Degree</label>
-    <input class="col form-control" id="degree" type="text" [(ngModel)]="academicRecord.degree">
-    <label class="col-3" for="school">School</label>
-    <input class="col form-control" id="school" type="text" [(ngModel)]="academicRecord.school">
+  <label class="col-3" for="degree">Degree</label>
+  <div ngbDropdown #myDrop="ngbDropdown">
+    <button class="col form-control" id="degree" ngbDropdownAnchor (focus)="myDrop.open()">
+      {{degree}}
+    </button>
+    <div ngbDropdownMenu aria-labelledby="degree">
+      <button ngbDropdownItem (click)="setDegree('ASSOCIATE',$event.target.textContent)">Associate</button>
+      <button ngbDropdownItem (click)="setDegree('BACHELOR',$event.target.textContent)">Bachelor</button>
+      <button ngbDropdownItem (click)="setDegree('MASTER',$event.target.textContent)">Master</button>
+      <button ngbDropdownItem (click)="setDegree('DOCTORAL',$event.target.textContent)">Doctoral</button>
+      <button ngbDropdownItem (click)="setDegree('OHTERS',$event.target.textContent)">Others</button>
+    </div>
+  </div>
+  <label class="col-3" for="school">School</label>
+  <input class="col form-control" id="school" type="text" [(ngModel)]="academicRecord.school">
 </div>
 <div class="form-group row">
     <label class="col-3" for="major">Major</label>

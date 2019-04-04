@@ -1,10 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  CanActivate,
-  Router
-} from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
+import { filter, map } from 'rxjs/operators';
 import { AuthenticationService } from "../authentication.service";
 @Component({
   selector: "app-landing-page",
@@ -12,9 +8,18 @@ import { AuthenticationService } from "../authentication.service";
   styleUrls: ["./landing-page.component.css"]
 })
 export class LandingPageComponent implements OnInit {
-  constructor(private authService: AuthenticationService) {
+  breadcrumb: string = "/";
+  constructor(private authService: AuthenticationService, private router: Router) {
     console.log(authService.isAuthenticated())
+    this.breadcrumb = router.url.toString();
   }
 
-  ngOnInit() {}
+  
+
+  ngOnInit() {
+    this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map(e => { return e.url;})).subscribe(
+        (e) => { this.breadcrumb = e;}
+    );
+  }
 }

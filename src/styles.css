@@ -10,12 +10,17 @@ html {
     padding:0;
 }
 
-.back-image{
-    background: url('./assets/img/bg-1.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+#landing-page-content {
+  height: -webkit-fill-available;
+  min-height: fit-content;
+}
+
+.back-image {
+  background: url('./assets/img/bg-1.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 /* Datepicker popup icon */
