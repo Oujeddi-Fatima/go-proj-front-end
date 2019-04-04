@@ -8,10 +8,10 @@ export class SearchJobStructure {
     "postDate",
     "closeDate",
     "estimatedSalary",
-    "skill",
+    "skill['skill']",
     "questions",
-    "address.state",
-    "address.city"
+    "address['state']",
+    "address['city']"
   ];
   titles: string[] = [
     "Title",

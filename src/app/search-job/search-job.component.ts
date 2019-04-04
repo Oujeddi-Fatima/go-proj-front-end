@@ -20,7 +20,7 @@ import { filter, map } from 'rxjs/operators';
   templateUrl: "./search-job.component.html"
 })
 export class SearchJobComponent implements OnInit {
-  jobs: Array<SearchJob> = new Array<SearchJob>();
+  jobs: any = new Array<SearchJob>();
   searchJob: SearchJob = new SearchJob();
   Contact: string = "";
   uri: string = "application";
@@ -58,7 +58,7 @@ export class SearchJobComponent implements OnInit {
 
         this.httpClient.postToServer("jobpost/byskill", skillSet).subscribe((jobs) => {
           console.log(jobs);
-         // this.jobs = jobs;
+          this.jobs = jobs;
         });
 
       });
